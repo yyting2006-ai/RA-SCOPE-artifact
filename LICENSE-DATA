@@ -1,0 +1,41 @@
+Licence of the derived data and documentation
+=============================================
+
+Scope
+-----
+This licence covers the derived research material in this artifact:
+
+  results/            per-book predictions, metric tables, paired intervals,
+                      support-state and sensitivity analyses, diagnostics
+  evidence/           claim registry, citation ledger, reliability summary,
+                      experiment cards, figure contract
+  README.md, DATA_AND_LICENSES.md, LICENSE-DATA
+
+That material is licensed under the Creative Commons Attribution 4.0
+International licence (CC BY 4.0):
+
+  https://creativecommons.org/licenses/by/4.0/
+
+You are free to share and adapt it for any purpose, provided you give
+appropriate credit, link to the licence, and indicate if changes were made.
+
+Software
+--------
+The software in this artifact -- src/, scripts/, tests/, and the figure
+generation code under paper/figures/ -- is licensed under the MIT Licence.
+See the LICENSE file.
+
+The manuscript
+--------------
+The manuscript under paper/ (LaTeX source, bibliography, compiled PDF and
+figures) is (c) 2026 the authors and is included so that the reported results
+can be checked against their source. It is not covered by the CC BY 4.0 grant
+above: the paper is under submission, and its redistribution terms follow the
+publishing venue's policy.
+
+Original third-party content
+----------------------------
+No story text or illustration is redistributed here, and this licence grants
+no rights over the source material. See DATA_AND_LICENSES.md for the licence
+position of each source collection (StoryWeaver, the Global African Storybook
+Project, the Global Digital Library).

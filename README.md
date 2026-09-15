@@ -112,6 +112,35 @@ python paper/figures/make_figures.py
 | `metadata/MANIFEST.sha256` | hash inventory for every packaged file except the manifest itself |
 | `.gitattributes`, `.gitignore` | the package is designed to be version-controlled; `.gitattributes` disables end-of-line conversion because the manifest hashes raw bytes |
 
+## Licence
+
+The software (`src/`, `scripts/`, `tests/`, and the figure generation code) is
+released under the **MIT Licence** — see `LICENSE`. The derived data and
+documentation (`results/`, `evidence/`, and the documentation files) are
+released under **CC BY 4.0** — see `LICENSE-DATA`. The manuscript under `paper/`
+is excluded from that grant and is included so the reported numbers can be
+checked against their source.
+
+This grant covers the authors' own contributions only. No story text or
+illustration is redistributed, and no rights over the third-party source
+material are granted; see `DATA_AND_LICENSES.md` for the licence position of
+each source collection.
+
+## Citation
+
+If you use this artifact, please cite the paper given at the top of this file.
+To reference the exact version archived with the submission, use the tag:
+
+```
+https://github.com/yyting2006-ai/RA-SCOPE-artifact/tree/v1.0
+```
+
+An immutable archive of that tag is available as
+
+```
+https://github.com/yyting2006-ai/RA-SCOPE-artifact/archive/refs/tags/v1.0.zip
+```
+
 ## A note on the figures and on the added baseline
 
 Two things changed relative to the earlier version of this study that produced
