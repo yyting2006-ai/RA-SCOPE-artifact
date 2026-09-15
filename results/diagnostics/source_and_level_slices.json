@@ -1,0 +1,598 @@
+{
+  "primary_method": "ra_scope",
+  "methods": [
+    "ra_scope",
+    "uniform_pool",
+    "length_ordinal",
+    "char_tfidf",
+    "standard_measurements",
+    "finetuned_macbert",
+    "qwen25_3b_rubric"
+  ],
+  "bootstrap": {
+    "resamples": 10000,
+    "unit": "split_group_lineage",
+    "interval": "percentile_95",
+    "inferential_minimum_books": 20,
+    "inferential_minimum_lineages": 10
+  },
+  "slice_inventory": {
+    "core120": {
+      "overall:all": {
+        "books": 120,
+        "lineage_groups": 120,
+        "level_distribution": {
+          "3": 40,
+          "2": 35,
+          "1": 11,
+          "5": 4,
+          "4": 30
+        },
+        "inferential_status": "secondary_cluster_bootstrap"
+      },
+      "source:global_asp": {
+        "books": 23,
+        "lineage_groups": 23,
+        "level_distribution": {
+          "1": 10,
+          "2": 8,
+          "3": 4,
+          "5": 1
+        },
+        "inferential_status": "secondary_cluster_bootstrap"
+      },
+      "source:global_digital_library": {
+        "books": 8,
+        "lineage_groups": 8,
+        "level_distribution": {
+          "3": 3,
+          "2": 5
+        },
+        "inferential_status": "descriptive_only_sparse"
+      },
+      "source:storyweaver": {
+        "books": 89,
+        "lineage_groups": 89,
+        "level_distribution": {
+          "3": 33,
+          "2": 22,
+          "4": 30,
+          "5": 3,
+          "1": 1
+        },
+        "inferential_status": "secondary_cluster_bootstrap"
+      },
+      "level_band:L1-L2": {
+        "books": 46,
+        "lineage_groups": 46,
+        "level_distribution": {
+          "2": 35,
+          "1": 11
+        },
+        "inferential_status": "secondary_cluster_bootstrap"
+      },
+      "level_band:L3": {
+        "books": 40,
+        "lineage_groups": 40,
+        "level_distribution": {
+          "3": 40
+        },
+        "inferential_status": "secondary_cluster_bootstrap"
+      },
+      "level_band:L4-L5": {
+        "books": 34,
+        "lineage_groups": 34,
+        "level_distribution": {
+          "5": 4,
+          "4": 30
+        },
+        "inferential_status": "secondary_cluster_bootstrap"
+      },
+      "single_level:L1": {
+        "books": 11,
+        "lineage_groups": 11,
+        "level_distribution": {
+          "1": 11
+        },
+        "inferential_status": "descriptive_only_sparse"
+      },
+      "single_level:L2": {
+        "books": 35,
+        "lineage_groups": 35,
+        "level_distribution": {
+          "2": 35
+        },
+        "inferential_status": "secondary_cluster_bootstrap"
+      },
+      "single_level:L3": {
+        "books": 40,
+        "lineage_groups": 40,
+        "level_distribution": {
+          "3": 40
+        },
+        "inferential_status": "secondary_cluster_bootstrap"
+      },
+      "single_level:L4": {
+        "books": 30,
+        "lineage_groups": 30,
+        "level_distribution": {
+          "4": 30
+        },
+        "inferential_status": "secondary_cluster_bootstrap"
+      },
+      "single_level:L5": {
+        "books": 4,
+        "lineage_groups": 4,
+        "level_distribution": {
+          "5": 4
+        },
+        "inferential_status": "descriptive_only_sparse"
+      },
+      "source_contrast:non_storyweaver": {
+        "books": 31,
+        "lineage_groups": 31,
+        "level_distribution": {
+          "3": 7,
+          "2": 13,
+          "1": 10,
+          "5": 1
+        },
+        "inferential_status": "secondary_cluster_bootstrap"
+      }
+    },
+    "waveD28": {
+      "overall:all": {
+        "books": 28,
+        "lineage_groups": 28,
+        "level_distribution": {
+          "2": 15,
+          "1": 7,
+          "4": 2,
+          "3": 4
+        },
+        "inferential_status": "secondary_cluster_bootstrap"
+      },
+      "source:global_asp": {
+        "books": 13,
+        "lineage_groups": 13,
+        "level_distribution": {
+          "2": 6,
+          "1": 7
+        },
+        "inferential_status": "descriptive_only_sparse"
+      },
+      "source:global_digital_library": {
+        "books": 8,
+        "lineage_groups": 8,
+        "level_distribution": {
+          "2": 8
+        },
+        "inferential_status": "descriptive_only_sparse"
+      },
+      "source:storyweaver": {
+        "books": 7,
+        "lineage_groups": 7,
+        "level_distribution": {
+          "4": 2,
+          "3": 4,
+          "2": 1
+        },
+        "inferential_status": "descriptive_only_sparse"
+      },
+      "level_band:L1-L2": {
+        "books": 22,
+        "lineage_groups": 22,
+        "level_distribution": {
+          "2": 15,
+          "1": 7
+        },
+        "inferential_status": "secondary_cluster_bootstrap"
+      },
+      "level_band:L3": {
+        "books": 4,
+        "lineage_groups": 4,
+        "level_distribution": {
+          "3": 4
+        },
+        "inferential_status": "descriptive_only_sparse"
+      },
+      "level_band:L4-L5": {
+        "books": 2,
+        "lineage_groups": 2,
+        "level_distribution": {
+          "4": 2
+        },
+        "inferential_status": "descriptive_only_sparse"
+      },
+      "single_level:L1": {
+        "books": 7,
+        "lineage_groups": 7,
+        "level_distribution": {
+          "1": 7
+        },
+        "inferential_status": "descriptive_only_sparse"
+      },
+      "single_level:L2": {
+        "books": 15,
+        "lineage_groups": 15,
+        "level_distribution": {
+          "2": 15
+        },
+        "inferential_status": "descriptive_only_sparse"
+      },
+      "single_level:L3": {
+        "books": 4,
+        "lineage_groups": 4,
+        "level_distribution": {
+          "3": 4
+        },
+        "inferential_status": "descriptive_only_sparse"
+      },
+      "single_level:L4": {
+        "books": 2,
+        "lineage_groups": 2,
+        "level_distribution": {
+          "4": 2
+        },
+        "inferential_status": "descriptive_only_sparse"
+      }
+    }
+  },
+  "paper_ready_core_source_summary": {
+    "storyweaver": {
+      "ra_scope": {
+        "dataset": "core120",
+        "slice_type": "source",
+        "slice_name": "storyweaver",
+        "books": 89,
+        "lineage_groups": 89,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "ra_scope",
+        "qwk": 0.7746250243490682,
+        "mae": 0.4157303370786517,
+        "exact_accuracy": 0.5955056179775281,
+        "adjacent_accuracy": 0.9887640449438202,
+        "catastrophic_error_rate": 0.011235955056179775
+      },
+      "length_ordinal": {
+        "dataset": "core120",
+        "slice_type": "source",
+        "slice_name": "storyweaver",
+        "books": 89,
+        "lineage_groups": 89,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "length_ordinal",
+        "qwk": 0.7149719775820657,
+        "mae": 0.5168539325842697,
+        "exact_accuracy": 0.5280898876404494,
+        "adjacent_accuracy": 0.9662921348314607,
+        "catastrophic_error_rate": 0.033707865168539325
+      },
+      "finetuned_macbert": {
+        "dataset": "core120",
+        "slice_type": "source",
+        "slice_name": "storyweaver",
+        "books": 89,
+        "lineage_groups": 89,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "finetuned_macbert",
+        "qwk": 0.6996866714871053,
+        "mae": 0.5617977528089888,
+        "exact_accuracy": 0.47191011235955055,
+        "adjacent_accuracy": 0.9662921348314607,
+        "catastrophic_error_rate": 0.033707865168539325
+      },
+      "qwen25_3b_rubric": {
+        "dataset": "core120",
+        "slice_type": "source",
+        "slice_name": "storyweaver",
+        "books": 89,
+        "lineage_groups": 89,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "qwen25_3b_rubric",
+        "qwk": 0.349625869688881,
+        "mae": 0.9775280898876404,
+        "exact_accuracy": 0.3595505617977528,
+        "adjacent_accuracy": 0.7528089887640449,
+        "catastrophic_error_rate": 0.24719101123595505
+      }
+    },
+    "global_asp": {
+      "ra_scope": {
+        "dataset": "core120",
+        "slice_type": "source",
+        "slice_name": "global_asp",
+        "books": 23,
+        "lineage_groups": 23,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "ra_scope",
+        "qwk": 0.7948463825569871,
+        "mae": 0.391304347826087,
+        "exact_accuracy": 0.6086956521739131,
+        "adjacent_accuracy": 1.0,
+        "catastrophic_error_rate": 0.0
+      },
+      "length_ordinal": {
+        "dataset": "core120",
+        "slice_type": "source",
+        "slice_name": "global_asp",
+        "books": 23,
+        "lineage_groups": 23,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "length_ordinal",
+        "qwk": 0.7148760330578512,
+        "mae": 0.5217391304347826,
+        "exact_accuracy": 0.4782608695652174,
+        "adjacent_accuracy": 1.0,
+        "catastrophic_error_rate": 0.0
+      },
+      "finetuned_macbert": {
+        "dataset": "core120",
+        "slice_type": "source",
+        "slice_name": "global_asp",
+        "books": 23,
+        "lineage_groups": 23,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "finetuned_macbert",
+        "qwk": 0.7462387161484454,
+        "mae": 0.4782608695652174,
+        "exact_accuracy": 0.5217391304347826,
+        "adjacent_accuracy": 1.0,
+        "catastrophic_error_rate": 0.0
+      },
+      "qwen25_3b_rubric": {
+        "dataset": "core120",
+        "slice_type": "source",
+        "slice_name": "global_asp",
+        "books": 23,
+        "lineage_groups": 23,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "qwen25_3b_rubric",
+        "qwk": 0.7547974413646056,
+        "mae": 0.43478260869565216,
+        "exact_accuracy": 0.5652173913043478,
+        "adjacent_accuracy": 1.0,
+        "catastrophic_error_rate": 0.0
+      }
+    },
+    "global_digital_library": {
+      "ra_scope": {
+        "dataset": "core120",
+        "slice_type": "source",
+        "slice_name": "global_digital_library",
+        "books": 8,
+        "lineage_groups": 8,
+        "inferential_status": "descriptive_only_sparse",
+        "method": "ra_scope",
+        "qwk": 0.5428571428571428,
+        "mae": 0.5,
+        "exact_accuracy": 0.5,
+        "adjacent_accuracy": 1.0,
+        "catastrophic_error_rate": 0.0
+      },
+      "length_ordinal": {
+        "dataset": "core120",
+        "slice_type": "source",
+        "slice_name": "global_digital_library",
+        "books": 8,
+        "lineage_groups": 8,
+        "inferential_status": "descriptive_only_sparse",
+        "method": "length_ordinal",
+        "qwk": 0.41666666666666674,
+        "mae": 0.875,
+        "exact_accuracy": 0.125,
+        "adjacent_accuracy": 1.0,
+        "catastrophic_error_rate": 0.0
+      },
+      "finetuned_macbert": {
+        "dataset": "core120",
+        "slice_type": "source",
+        "slice_name": "global_digital_library",
+        "books": 8,
+        "lineage_groups": 8,
+        "inferential_status": "descriptive_only_sparse",
+        "method": "finetuned_macbert",
+        "qwk": 0.41463414634146345,
+        "mae": 0.75,
+        "exact_accuracy": 0.25,
+        "adjacent_accuracy": 1.0,
+        "catastrophic_error_rate": 0.0
+      },
+      "qwen25_3b_rubric": {
+        "dataset": "core120",
+        "slice_type": "source",
+        "slice_name": "global_digital_library",
+        "books": 8,
+        "lineage_groups": 8,
+        "inferential_status": "descriptive_only_sparse",
+        "method": "qwen25_3b_rubric",
+        "qwk": 0.5294117647058824,
+        "mae": 0.25,
+        "exact_accuracy": 0.75,
+        "adjacent_accuracy": 1.0,
+        "catastrophic_error_rate": 0.0
+      }
+    }
+  },
+  "paper_ready_core_level_band_summary": {
+    "L1-L2": {
+      "ra_scope": {
+        "dataset": "core120",
+        "slice_type": "level_band",
+        "slice_name": "L1-L2",
+        "books": 46,
+        "lineage_groups": 46,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "ra_scope",
+        "qwk": 0.22547584187408498,
+        "mae": 0.5,
+        "exact_accuracy": 0.5,
+        "adjacent_accuracy": 1.0,
+        "catastrophic_error_rate": 0.0
+      },
+      "length_ordinal": {
+        "dataset": "core120",
+        "slice_type": "level_band",
+        "slice_name": "L1-L2",
+        "books": 46,
+        "lineage_groups": 46,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "length_ordinal",
+        "qwk": 0.10039113428943935,
+        "mae": 0.6521739130434783,
+        "exact_accuracy": 0.34782608695652173,
+        "adjacent_accuracy": 1.0,
+        "catastrophic_error_rate": 0.0
+      },
+      "finetuned_macbert": {
+        "dataset": "core120",
+        "slice_type": "level_band",
+        "slice_name": "L1-L2",
+        "books": 46,
+        "lineage_groups": 46,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "finetuned_macbert",
+        "qwk": 0.1776239907727798,
+        "mae": 0.6739130434782609,
+        "exact_accuracy": 0.32608695652173914,
+        "adjacent_accuracy": 1.0,
+        "catastrophic_error_rate": 0.0
+      },
+      "qwen25_3b_rubric": {
+        "dataset": "core120",
+        "slice_type": "level_band",
+        "slice_name": "L1-L2",
+        "books": 46,
+        "lineage_groups": 46,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "qwen25_3b_rubric",
+        "qwk": 0.2023752969121142,
+        "mae": 0.7608695652173914,
+        "exact_accuracy": 0.4782608695652174,
+        "adjacent_accuracy": 0.8913043478260869,
+        "catastrophic_error_rate": 0.10869565217391304
+      }
+    },
+    "L3": {
+      "ra_scope": {
+        "dataset": "core120",
+        "slice_type": "level_band",
+        "slice_name": "L3",
+        "books": 40,
+        "lineage_groups": 40,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "ra_scope",
+        "qwk": null,
+        "mae": 0.375,
+        "exact_accuracy": 0.65,
+        "adjacent_accuracy": 0.975,
+        "catastrophic_error_rate": 0.025
+      },
+      "length_ordinal": {
+        "dataset": "core120",
+        "slice_type": "level_band",
+        "slice_name": "L3",
+        "books": 40,
+        "lineage_groups": 40,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "length_ordinal",
+        "qwk": null,
+        "mae": 0.525,
+        "exact_accuracy": 0.525,
+        "adjacent_accuracy": 0.95,
+        "catastrophic_error_rate": 0.05
+      },
+      "finetuned_macbert": {
+        "dataset": "core120",
+        "slice_type": "level_band",
+        "slice_name": "L3",
+        "books": 40,
+        "lineage_groups": 40,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "finetuned_macbert",
+        "qwk": null,
+        "mae": 0.55,
+        "exact_accuracy": 0.5,
+        "adjacent_accuracy": 0.95,
+        "catastrophic_error_rate": 0.05
+      },
+      "qwen25_3b_rubric": {
+        "dataset": "core120",
+        "slice_type": "level_band",
+        "slice_name": "L3",
+        "books": 40,
+        "lineage_groups": 40,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "qwen25_3b_rubric",
+        "qwk": null,
+        "mae": 0.825,
+        "exact_accuracy": 0.525,
+        "adjacent_accuracy": 0.7,
+        "catastrophic_error_rate": 0.3
+      }
+    },
+    "L4-L5": {
+      "ra_scope": {
+        "dataset": "core120",
+        "slice_type": "level_band",
+        "slice_name": "L4-L5",
+        "books": 34,
+        "lineage_groups": 34,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "ra_scope",
+        "qwk": 0.13559322033898302,
+        "mae": 0.35294117647058826,
+        "exact_accuracy": 0.6470588235294118,
+        "adjacent_accuracy": 1.0,
+        "catastrophic_error_rate": 0.0
+      },
+      "length_ordinal": {
+        "dataset": "core120",
+        "slice_type": "level_band",
+        "slice_name": "L4-L5",
+        "books": 34,
+        "lineage_groups": 34,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "length_ordinal",
+        "qwk": 0.10526315789473695,
+        "mae": 0.4117647058823529,
+        "exact_accuracy": 0.6470588235294118,
+        "adjacent_accuracy": 0.9705882352941176,
+        "catastrophic_error_rate": 0.029411764705882353
+      },
+      "finetuned_macbert": {
+        "dataset": "core120",
+        "slice_type": "level_band",
+        "slice_name": "L4-L5",
+        "books": 34,
+        "lineage_groups": 34,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "finetuned_macbert",
+        "qwk": 0.21387283236994226,
+        "mae": 0.4117647058823529,
+        "exact_accuracy": 0.6176470588235294,
+        "adjacent_accuracy": 0.9705882352941176,
+        "catastrophic_error_rate": 0.029411764705882353
+      },
+      "qwen25_3b_rubric": {
+        "dataset": "core120",
+        "slice_type": "level_band",
+        "slice_name": "L4-L5",
+        "books": 34,
+        "lineage_groups": 34,
+        "inferential_status": "secondary_cluster_bootstrap",
+        "method": "qwen25_3b_rubric",
+        "qwk": 0.09831824062095751,
+        "mae": 0.9117647058823529,
+        "exact_accuracy": 0.23529411764705882,
+        "adjacent_accuracy": 0.8529411764705882,
+        "catastrophic_error_rate": 0.14705882352941177
+      }
+    }
+  },
+  "high_level_boundary": {
+    "observed_core_L5_books": 4,
+    "observed_core_L6_books": 0,
+    "interpretation": "L5 is descriptive-only and L6 is unobserved; the frozen 51-book prospective challenge is required for high-level claims."
+  }
+}

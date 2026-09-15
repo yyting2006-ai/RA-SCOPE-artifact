@@ -1,0 +1,93 @@
+{
+  "dataset": "core120",
+  "books": 120,
+  "features": [
+    "length_ordinal",
+    "char_tfidf",
+    "standard_measurements",
+    "finetuned_macbert"
+  ],
+  "protocol": {
+    "model": "multinomial logistic regression",
+    "cv": "stratified k-fold, k in [4, 5, 6, 10], 10 seeds",
+    "notes": "stack is scored out-of-fold; comparators need no fitting"
+  },
+  "comparators": {
+    "ra_scope": {
+      "qwk": 0.8227171998409001,
+      "mae": 0.4166666666666667,
+      "exact_accuracy": 0.5916666666666667,
+      "error_above_one_rate": 0.008333333333333333
+    },
+    "uniform_pool": {
+      "qwk": 0.7903837044054951,
+      "mae": 0.4583333333333333,
+      "exact_accuracy": 0.5583333333333333,
+      "error_above_one_rate": 0.016666666666666666
+    }
+  },
+  "stability_across_folds": {
+    "4-fold": {
+      "qwk_mean": 0.8375863269209758,
+      "qwk_sd": 0.01969077458244975,
+      "mae_mean": 0.2866666666666667,
+      "mae_sd": 0.03210226714043036
+    },
+    "5-fold": {
+      "qwk_mean": 0.8443959674010608,
+      "qwk_sd": 0.006259522058621064,
+      "mae_mean": 0.275,
+      "mae_sd": 0.01178511301977579
+    },
+    "6-fold": {
+      "qwk_mean": 0.8432104894955007,
+      "qwk_sd": 0.00933370316710737,
+      "mae_mean": 0.27666666666666667,
+      "mae_sd": 0.015723301886761007
+    },
+    "10-fold": {
+      "qwk_mean": 0.8422497156476167,
+      "qwk_sd": 0.009818907137754506,
+      "mae_mean": 0.27999999999999997,
+      "mae_sd": 0.014043582955293924
+    }
+  },
+  "stacked_logistic": {
+    "consensus_metrics": {
+      "qwk": 0.8471750540290213,
+      "mae": 0.275,
+      "exact_accuracy": 0.725,
+      "error_above_one_rate": 0.0
+    },
+    "per_seed_qwk_mean": 0.8443959674010608,
+    "per_seed_qwk_sd": 0.006259522058621064,
+    "per_seed_mae_mean": 0.275,
+    "per_seed_mae_sd": 0.01178511301977579
+  },
+  "paired_bootstrap_vs": {
+    "ra_scope": {
+      "d_qwk": 0.024457854188121186,
+      "d_qwk_ci95": [
+        -0.023820439261696972,
+        0.074162807696087
+      ],
+      "d_mae": -0.14166666666666666,
+      "d_mae_ci95": [
+        -0.24999999999999997,
+        -0.04166666666666663
+      ]
+    },
+    "uniform_pool": {
+      "d_qwk": 0.056791349623526166,
+      "d_qwk_ci95": [
+        0.000779732527820787,
+        0.1131039949756788
+      ],
+      "d_mae": -0.1833333333333333,
+      "d_mae_ci95": [
+        -0.3,
+        -0.06666666666666671
+      ]
+    }
+  }
+}

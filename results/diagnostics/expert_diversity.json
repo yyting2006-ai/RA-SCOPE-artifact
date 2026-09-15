@@ -1,0 +1,49 @@
+{
+  "prediction_input_sha256": "1a0db1d38c06e212a6e35294faba9fc1630d58bb8e4c7fb66683fbdc86b48e9d",
+  "experts": [
+    "length",
+    "character",
+    "standard",
+    "macbert"
+  ],
+  "datasets": {
+    "core120": {
+      "books": 120,
+      "expert_prediction_patterns": 42,
+      "all_experts_agree_books": 16,
+      "expert_disagreement_books": 104,
+      "mean_pairwise_disagreement_rate": 0.5763888888888888,
+      "oracle_any_expert_exact_accuracy": 0.8583333333333333,
+      "oracle_any_expert_within_one_accuracy": 1.0,
+      "each_expert_has_unique_exact_books": {
+        "length": 4,
+        "character": 12,
+        "standard": 10,
+        "macbert": 6
+      },
+      "ra_exact_on_expert_disagreement": 60,
+      "uniform_exact_on_expert_disagreement": 56,
+      "ra_exact_when_no_individual_expert_exact": 1,
+      "uniform_exact_when_no_individual_expert_exact": 1
+    },
+    "waveD28": {
+      "books": 28,
+      "expert_prediction_patterns": 17,
+      "all_experts_agree_books": 2,
+      "expert_disagreement_books": 26,
+      "mean_pairwise_disagreement_rate": 0.5892857142857143,
+      "oracle_any_expert_exact_accuracy": 0.8571428571428571,
+      "oracle_any_expert_within_one_accuracy": 1.0,
+      "each_expert_has_unique_exact_books": {
+        "length": 2,
+        "character": 3,
+        "standard": 2,
+        "macbert": 0
+      },
+      "ra_exact_on_expert_disagreement": 16,
+      "uniform_exact_on_expert_disagreement": 16,
+      "ra_exact_when_no_individual_expert_exact": 0,
+      "uniform_exact_when_no_individual_expert_exact": 0
+    }
+  }
+}

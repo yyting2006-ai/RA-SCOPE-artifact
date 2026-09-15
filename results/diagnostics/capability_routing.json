@@ -1,0 +1,420 @@
+{
+  "selection_boundary": {
+    "specialist_models_selected_on": "96 development books only",
+    "capability_decision_uses_target_labels": false,
+    "capability_decision_evidence": "phonetic marks and illustration pixels are consistently observable; exact font size, line spacing, and text boxes are not represented comparably across GDL EPUB, ASP, StoryWeaver HTML, and rendered PDF families",
+    "target_labels_known_before_experiment_conception": true,
+    "confirmatory_status": false
+  },
+  "routing": {
+    "active_specialists": {
+      "illustration_independence": "dinov2_visual_layout_ordinal",
+      "pinyin_annotation_reduction": "pinyin_support_ordinal"
+    },
+    "abstained_specialists": {
+      "layout_density": "heterogeneous_page_geometry_not_comparable_across_source_families"
+    },
+    "text_route_dimensions": [
+      "character_demand",
+      "vocabulary_demand",
+      "grammar_sentence_demand",
+      "discourse_demand",
+      "semantic_content_demand",
+      "character_plot_demand",
+      "genre_theme_demand"
+    ],
+    "active_specialist_criterion_coverage": 0.2,
+    "explicit_specialist_abstention_coverage": 0.1
+  },
+  "source_only_specialist_tuning": {
+    "illustration_independence": {
+      "method": "dinov2_visual_layout_ordinal",
+      "selected": {
+        "representation": "dinov2_visual_layout",
+        "pca_dimension": 32,
+        "include_std": false,
+        "c": 1.0,
+        "qwk": 0.7669172932330827,
+        "mae": 0.2604166666666667,
+        "exact_accuracy": 0.7604166666666666,
+        "adjacent_accuracy": 0.9895833333333334,
+        "catastrophic_error_rate": 0.010416666666666666,
+        "spearman_score": 0.6937396669477556,
+        "source_group_mae": {
+          "global_asp": 0.2647058823529412,
+          "global_digital_library": 0.2727272727272727,
+          "storyweaver": 0.2549019607843137
+        },
+        "worst_source_mae": 0.2727272727272727,
+        "mean_raw_threshold_violation_rate": 0.14970057354925775
+      },
+      "source_oof_metrics": {
+        "qwk": 0.7669172932330827,
+        "mae": 0.2604166666666667,
+        "exact_accuracy": 0.7604166666666666,
+        "adjacent_accuracy": 0.9895833333333334,
+        "catastrophic_error_rate": 0.010416666666666666,
+        "spearman_score": 0.6937396669477556
+      },
+      "selection_rule": "minimize worst-source MAE, then overall MAE, QWK, exact accuracy, and complexity"
+    },
+    "pinyin_annotation_reduction": {
+      "method": "pinyin_support_ordinal",
+      "selected": {
+        "representation": "pinyin_handcrafted",
+        "c": 0.1,
+        "qwk": 0.9465478841870824,
+        "mae": 0.052083333333333336,
+        "exact_accuracy": 0.9895833333333334,
+        "adjacent_accuracy": 0.9895833333333334,
+        "catastrophic_error_rate": 0.010416666666666666,
+        "spearman_score": 0.523056909053445,
+        "source_group_mae": {
+          "global_asp": 0.0,
+          "global_digital_library": 0.45454545454545453,
+          "storyweaver": 0.0
+        },
+        "worst_source_mae": 0.45454545454545453,
+        "mean_raw_threshold_violation_rate": 0.0
+      },
+      "source_oof_metrics": {
+        "qwk": 0.9465478841870824,
+        "mae": 0.052083333333333336,
+        "exact_accuracy": 0.9895833333333334,
+        "adjacent_accuracy": 0.9895833333333334,
+        "catastrophic_error_rate": 0.010416666666666666,
+        "spearman_score": 0.523056909053445
+      },
+      "selection_rule": "minimize worst-source MAE, then overall MAE, QWK, exact accuracy, and complexity"
+    },
+    "layout_density": {
+      "method": "page_layout_ordinal",
+      "selected": {
+        "representation": "layout_handcrafted",
+        "c": 10.0,
+        "qwk": 0.8708074534161491,
+        "mae": 0.3229166666666667,
+        "exact_accuracy": 0.7083333333333334,
+        "adjacent_accuracy": 0.9791666666666666,
+        "catastrophic_error_rate": 0.020833333333333332,
+        "spearman_score": 0.7721097616975092,
+        "source_group_mae": {
+          "global_asp": 0.47058823529411764,
+          "global_digital_library": 0.18181818181818182,
+          "storyweaver": 0.2549019607843137
+        },
+        "worst_source_mae": 0.47058823529411764,
+        "mean_raw_threshold_violation_rate": 0.24788594081357243
+      },
+      "source_oof_metrics": {
+        "qwk": 0.8708074534161491,
+        "mae": 0.3229166666666667,
+        "exact_accuracy": 0.7083333333333334,
+        "adjacent_accuracy": 0.9791666666666666,
+        "catastrophic_error_rate": 0.020833333333333332,
+        "spearman_score": 0.7721097616975092
+      },
+      "selection_rule": "minimize worst-source MAE, then overall MAE, QWK, exact accuracy, and complexity"
+    }
+  },
+  "target_metrics": {
+    "capability_routed": {
+      "macro_qwk": 0.5322678338167208,
+      "macro_mae": 0.8925,
+      "macro_exact_accuracy": 0.3775,
+      "macro_adjacent_accuracy": 0.755,
+      "macro_catastrophic_error_rate": 0.245,
+      "per_dimension": {
+        "character_demand": {
+          "qwk": 0.18935837245696385,
+          "mae": 1.1916666666666667,
+          "exact_accuracy": 0.25833333333333336,
+          "adjacent_accuracy": 0.5833333333333334,
+          "catastrophic_error_rate": 0.4166666666666667,
+          "spearman_score": 0.0
+        },
+        "vocabulary_demand": {
+          "qwk": 0.21200196753566158,
+          "mae": 1.225,
+          "exact_accuracy": 0.24166666666666667,
+          "adjacent_accuracy": 0.5666666666666667,
+          "catastrophic_error_rate": 0.43333333333333335,
+          "spearman_score": 0.0
+        },
+        "grammar_sentence_demand": {
+          "qwk": 0.5645681519531716,
+          "mae": 1.0916666666666666,
+          "exact_accuracy": 0.2916666666666667,
+          "adjacent_accuracy": 0.6833333333333333,
+          "catastrophic_error_rate": 0.31666666666666665,
+          "spearman_score": 0.0
+        },
+        "discourse_demand": {
+          "qwk": 0.7655468191565403,
+          "mae": 0.5666666666666667,
+          "exact_accuracy": 0.48333333333333334,
+          "adjacent_accuracy": 0.9583333333333334,
+          "catastrophic_error_rate": 0.041666666666666664,
+          "spearman_score": 0.0
+        },
+        "semantic_content_demand": {
+          "qwk": 0.5584555757248688,
+          "mae": 0.8333333333333334,
+          "exact_accuracy": 0.36666666666666664,
+          "adjacent_accuracy": 0.8083333333333333,
+          "catastrophic_error_rate": 0.19166666666666668,
+          "spearman_score": 0.0
+        },
+        "character_plot_demand": {
+          "qwk": 0.5917721518987342,
+          "mae": 0.9,
+          "exact_accuracy": 0.3333333333333333,
+          "adjacent_accuracy": 0.8,
+          "catastrophic_error_rate": 0.2,
+          "spearman_score": 0.0
+        },
+        "genre_theme_demand": {
+          "qwk": 0.4974418220828519,
+          "mae": 0.9916666666666667,
+          "exact_accuracy": 0.3333333333333333,
+          "adjacent_accuracy": 0.7,
+          "catastrophic_error_rate": 0.3,
+          "spearman_score": 0.0
+        },
+        "illustration_independence": {
+          "qwk": 0.36484687083888157,
+          "mae": 0.925,
+          "exact_accuracy": 0.275,
+          "adjacent_accuracy": 0.8,
+          "catastrophic_error_rate": 0.2,
+          "spearman_score": 0.0
+        },
+        "pinyin_annotation_reduction": {
+          "qwk": 0.9658362989323843,
+          "mae": 0.1,
+          "exact_accuracy": 0.9,
+          "adjacent_accuracy": 1.0,
+          "catastrophic_error_rate": 0.0,
+          "spearman_score": 0.0
+        },
+        "layout_density": {
+          "qwk": 0.6128503075871496,
+          "mae": 1.1,
+          "exact_accuracy": 0.2916666666666667,
+          "adjacent_accuracy": 0.65,
+          "catastrophic_error_rate": 0.35,
+          "spearman_score": 0.0
+        }
+      }
+    },
+    "all_specialists_without_capability_abstention": {
+      "macro_qwk": 0.5116883807902315,
+      "macro_mae": 0.9341666666666667,
+      "macro_exact_accuracy": 0.37333333333333335,
+      "macro_adjacent_accuracy": 0.7425,
+      "macro_catastrophic_error_rate": 0.2575,
+      "per_dimension": {
+        "character_demand": {
+          "qwk": 0.18935837245696385,
+          "mae": 1.1916666666666667,
+          "exact_accuracy": 0.25833333333333336,
+          "adjacent_accuracy": 0.5833333333333334,
+          "catastrophic_error_rate": 0.4166666666666667,
+          "spearman_score": 0.0
+        },
+        "vocabulary_demand": {
+          "qwk": 0.21200196753566158,
+          "mae": 1.225,
+          "exact_accuracy": 0.24166666666666667,
+          "adjacent_accuracy": 0.5666666666666667,
+          "catastrophic_error_rate": 0.43333333333333335,
+          "spearman_score": 0.0
+        },
+        "grammar_sentence_demand": {
+          "qwk": 0.5645681519531716,
+          "mae": 1.0916666666666666,
+          "exact_accuracy": 0.2916666666666667,
+          "adjacent_accuracy": 0.6833333333333333,
+          "catastrophic_error_rate": 0.31666666666666665,
+          "spearman_score": 0.0
+        },
+        "discourse_demand": {
+          "qwk": 0.7655468191565403,
+          "mae": 0.5666666666666667,
+          "exact_accuracy": 0.48333333333333334,
+          "adjacent_accuracy": 0.9583333333333334,
+          "catastrophic_error_rate": 0.041666666666666664,
+          "spearman_score": 0.0
+        },
+        "semantic_content_demand": {
+          "qwk": 0.5584555757248688,
+          "mae": 0.8333333333333334,
+          "exact_accuracy": 0.36666666666666664,
+          "adjacent_accuracy": 0.8083333333333333,
+          "catastrophic_error_rate": 0.19166666666666668,
+          "spearman_score": 0.0
+        },
+        "character_plot_demand": {
+          "qwk": 0.5917721518987342,
+          "mae": 0.9,
+          "exact_accuracy": 0.3333333333333333,
+          "adjacent_accuracy": 0.8,
+          "catastrophic_error_rate": 0.2,
+          "spearman_score": 0.0
+        },
+        "genre_theme_demand": {
+          "qwk": 0.4974418220828519,
+          "mae": 0.9916666666666667,
+          "exact_accuracy": 0.3333333333333333,
+          "adjacent_accuracy": 0.7,
+          "catastrophic_error_rate": 0.3,
+          "spearman_score": 0.0
+        },
+        "illustration_independence": {
+          "qwk": 0.36484687083888157,
+          "mae": 0.925,
+          "exact_accuracy": 0.275,
+          "adjacent_accuracy": 0.8,
+          "catastrophic_error_rate": 0.2,
+          "spearman_score": 0.0
+        },
+        "pinyin_annotation_reduction": {
+          "qwk": 0.9658362989323843,
+          "mae": 0.1,
+          "exact_accuracy": 0.9,
+          "adjacent_accuracy": 1.0,
+          "catastrophic_error_rate": 0.0,
+          "spearman_score": 0.0
+        },
+        "layout_density": {
+          "qwk": 0.40705577732225706,
+          "mae": 1.5166666666666666,
+          "exact_accuracy": 0.25,
+          "adjacent_accuracy": 0.525,
+          "catastrophic_error_rate": 0.475,
+          "spearman_score": 0.0
+        }
+      }
+    },
+    "original_ra_scope": {
+      "macro_qwk": 0.4561221895286877,
+      "macro_mae": 1.0116666666666667,
+      "macro_exact_accuracy": 0.3466666666666667,
+      "macro_adjacent_accuracy": 0.7283333333333334,
+      "macro_catastrophic_error_rate": 0.27166666666666667,
+      "per_dimension": {
+        "character_demand": {
+          "qwk": 0.18935837245696385,
+          "mae": 1.1916666666666667,
+          "exact_accuracy": 0.25833333333333336,
+          "adjacent_accuracy": 0.5833333333333334,
+          "catastrophic_error_rate": 0.4166666666666667,
+          "spearman_score": 0.0
+        },
+        "vocabulary_demand": {
+          "qwk": 0.21200196753566158,
+          "mae": 1.225,
+          "exact_accuracy": 0.24166666666666667,
+          "adjacent_accuracy": 0.5666666666666667,
+          "catastrophic_error_rate": 0.43333333333333335,
+          "spearman_score": 0.0
+        },
+        "grammar_sentence_demand": {
+          "qwk": 0.5645681519531716,
+          "mae": 1.0916666666666666,
+          "exact_accuracy": 0.2916666666666667,
+          "adjacent_accuracy": 0.6833333333333333,
+          "catastrophic_error_rate": 0.31666666666666665,
+          "spearman_score": 0.0
+        },
+        "discourse_demand": {
+          "qwk": 0.7655468191565403,
+          "mae": 0.5666666666666667,
+          "exact_accuracy": 0.48333333333333334,
+          "adjacent_accuracy": 0.9583333333333334,
+          "catastrophic_error_rate": 0.041666666666666664,
+          "spearman_score": 0.0
+        },
+        "semantic_content_demand": {
+          "qwk": 0.5584555757248688,
+          "mae": 0.8333333333333334,
+          "exact_accuracy": 0.36666666666666664,
+          "adjacent_accuracy": 0.8083333333333333,
+          "catastrophic_error_rate": 0.19166666666666668,
+          "spearman_score": 0.0
+        },
+        "character_plot_demand": {
+          "qwk": 0.5917721518987342,
+          "mae": 0.9,
+          "exact_accuracy": 0.3333333333333333,
+          "adjacent_accuracy": 0.8,
+          "catastrophic_error_rate": 0.2,
+          "spearman_score": 0.0
+        },
+        "genre_theme_demand": {
+          "qwk": 0.4974418220828519,
+          "mae": 0.9916666666666667,
+          "exact_accuracy": 0.3333333333333333,
+          "adjacent_accuracy": 0.7,
+          "catastrophic_error_rate": 0.3,
+          "spearman_score": 0.0
+        },
+        "illustration_independence": {
+          "qwk": 0.3089042730962043,
+          "mae": 1.0916666666666666,
+          "exact_accuracy": 0.16666666666666666,
+          "adjacent_accuracy": 0.7416666666666667,
+          "catastrophic_error_rate": 0.25833333333333336,
+          "spearman_score": 0.0
+        },
+        "pinyin_annotation_reduction": {
+          "qwk": 0.2603224537947306,
+          "mae": 1.125,
+          "exact_accuracy": 0.7,
+          "adjacent_accuracy": 0.7916666666666666,
+          "catastrophic_error_rate": 0.20833333333333334,
+          "spearman_score": 0.0
+        },
+        "layout_density": {
+          "qwk": 0.6128503075871496,
+          "mae": 1.1,
+          "exact_accuracy": 0.2916666666666667,
+          "adjacent_accuracy": 0.65,
+          "catastrophic_error_rate": 0.35,
+          "spearman_score": 0.0
+        }
+      }
+    }
+  },
+  "paired_comparison": {
+    "delta_definition": "capability_routed_minus_original_ra_scope",
+    "point_delta": {
+      "macro_qwk": 0.07614564428803311,
+      "macro_mae": -0.11916666666666675,
+      "macro_exact_accuracy": 0.030833333333333324,
+      "macro_adjacent_accuracy": 0.026666666666666616,
+      "macro_catastrophic_error_rate": -0.026666666666666672
+    },
+    "paired_book_bootstrap_95": {
+      "macro_qwk_delta": {
+        "low": 0.05476166433686961,
+        "median": 0.0763931961396587,
+        "high": 0.09569887243454667
+      },
+      "macro_mae_delta": {
+        "low": -0.15833333333333333,
+        "median": -0.11916666666666653,
+        "high": -0.08166666666666655
+      },
+      "macro_exact_accuracy_delta": {
+        "low": 0.019166666666666665,
+        "median": 0.030833333333333324,
+        "high": 0.04250000000000004
+      }
+    }
+  },
+  "interpretation_boundary": [
+    "Specialist routing supports the criterion analysis and is separate from the global projection.",
+    "Layout remains on the text route because page geometry is not comparable across source families."
+  ]
+}

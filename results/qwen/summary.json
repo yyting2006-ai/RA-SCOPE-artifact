@@ -1,0 +1,111 @@
+{
+  "model": {
+    "id": "Qwen/Qwen2.5-3B-Instruct",
+    "dtype": "bfloat16",
+    "decoding": "restricted next-token argmax over the six level tokens",
+    "trainable_parameters": 0,
+    "target_labels_used_for_prediction_or_selection": false,
+    "commit_sha": "aa8e72537993ba99e69dfaafa59ed015b17504d1"
+  },
+  "prompt": {
+    "sha256": "342ddb11dd5975bffae53a487a700025a73f7738f18ef1959f8465a85827816e",
+    "candidate_token_ids": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ]
+  },
+  "metrics": {
+    "source_development_a": {
+      "books": 48,
+      "qwk": 0.7497995188452287,
+      "mae": 0.7083333333333334,
+      "exact_accuracy": 0.4583333333333333,
+      "adjacent_accuracy": 0.8541666666666666,
+      "catastrophic_error_rate": 0.14583333333333334,
+      "prediction_distribution": {
+        "1": 7,
+        "2": 11,
+        "3": 10,
+        "4": 3,
+        "5": 15,
+        "6": 2
+      }
+    },
+    "source_development_b": {
+      "books": 48,
+      "qwk": -2.220446049250313e-16,
+      "mae": 1.2083333333333333,
+      "exact_accuracy": 0.125,
+      "adjacent_accuracy": 0.7083333333333334,
+      "catastrophic_error_rate": 0.2916666666666667,
+      "prediction_distribution": {
+        "2": 2,
+        "3": 2,
+        "4": 7,
+        "5": 26,
+        "6": 11
+      }
+    },
+    "main120": {
+      "books": 120,
+      "qwk": 0.5380247763248451,
+      "mae": 0.825,
+      "exact_accuracy": 0.425,
+      "adjacent_accuracy": 0.8166666666666667,
+      "catastrophic_error_rate": 0.18333333333333332,
+      "prediction_distribution": {
+        "1": 5,
+        "2": 29,
+        "3": 40,
+        "4": 9,
+        "5": 29,
+        "6": 8
+      }
+    },
+    "robustness28": {
+      "books": 28,
+      "qwk": 0.6031886625332152,
+      "mae": 0.7142857142857143,
+      "exact_accuracy": 0.4642857142857143,
+      "adjacent_accuracy": 0.8571428571428571,
+      "catastrophic_error_rate": 0.14285714285714285,
+      "prediction_distribution": {
+        "1": 4,
+        "2": 13,
+        "3": 5,
+        "5": 6
+      }
+    },
+    "source_development_combined": {
+      "books": 96,
+      "qwk": 0.6259477674810447,
+      "mae": 0.9583333333333334,
+      "exact_accuracy": 0.2916666666666667,
+      "adjacent_accuracy": 0.78125,
+      "catastrophic_error_rate": 0.21875,
+      "prediction_distribution": {
+        "1": 7,
+        "2": 13,
+        "3": 12,
+        "4": 10,
+        "5": 41,
+        "6": 13
+      }
+    }
+  },
+  "runtime": {
+    "books": 244,
+    "wall_seconds": 237.4552795999989,
+    "max_input_tokens": 3927,
+    "max_cuda_memory_gb": 8.93242368,
+    "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "python": "3.11.9",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.9.0",
+    "scikit_learn": "1.8.0"
+  }
+}

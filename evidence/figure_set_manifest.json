@@ -1,0 +1,75 @@
+{
+  "asset_type": "imagegen_scientific_raster_composites",
+  "contract": {
+    "path": "evidence/figure_set_contract.md",
+    "sha256": "0875506a12bd5e3c355fb0ceadd1823c306dc3e8d29e720d77baf39e292fe913"
+  },
+  "figures": [
+    {
+      "figure": 1,
+      "scientific_role": "conceptual method and decision-contract overview",
+      "generator": "OpenAI ImageGen; Figure 4 uses deterministic raster geometry locking on the accepted ImageGen visual base",
+      "output": {
+        "path": "paper/figures/method.png",
+        "sha256": "50c6dbeca1c91bdae86992f1d1542e73cb8913293efced0dfb422f4fb24c43f5",
+        "width_px": 1693,
+        "height_px": 929,
+        "format": "PNG raster"
+      },
+      "quantitative_values_sources": {}
+    },
+    {
+      "figure": 2,
+      "scientific_role": "primary held-out QWK and paired QWK intervals",
+      "generator": "OpenAI ImageGen; Figure 4 uses deterministic raster geometry locking on the accepted ImageGen visual base",
+      "output": {
+        "path": "paper/figures/performance.png",
+        "sha256": "81393a1207919ed1a9382ab559c8289d67d7e7d3c6b48f170be8587024ea4375",
+        "width_px": 1758,
+        "height_px": 895,
+        "format": "PNG raster"
+      },
+      "quantitative_values_sources": {
+        "results/global/ablation_metrics.csv": "bc32147d7e00b82669c7a0d6d5cca9dbf7527a97ee7ec37d008892e5d30f01cc",
+        "results/global/paired_intervals.csv": "362e14db0f26536afc2f3b3071a72b5150cfa13a7e3b1af7dfaa3385e3f956e7"
+      }
+    },
+    {
+      "figure": 3,
+      "scientific_role": "support states, grade preservation, and sensitivity",
+      "generator": "OpenAI ImageGen; Figure 4 uses deterministic raster geometry locking on the accepted ImageGen visual base",
+      "output": {
+        "path": "paper/figures/support.png",
+        "sha256": "f7c2a5a2b6f1168a133b0c67132a38f89c772465d5b0de929a0be3b8873c92f0",
+        "width_px": 1774,
+        "height_px": 887,
+        "format": "PNG raster"
+      },
+      "quantitative_values_sources": {
+        "results/global/support_state_metrics.csv": "24815f92f941a50962733c9f2d6e3debbeb32994e22aa2f6ea04170814fcba53",
+        "results/global/sensitivity.csv": "ad2a27b83ec54e207ac90131572ccb69d342be5330caddd80f2dd77600112d45"
+      }
+    },
+    {
+      "figure": 4,
+      "scientific_role": "length-shortcut, construct-alignment, and modality-routing evidence",
+      "generator": "OpenAI ImageGen; Figure 4 uses deterministic raster geometry locking on the accepted ImageGen visual base",
+      "output": {
+        "path": "paper/figures/validity.png",
+        "sha256": "fa1b12b89e086e26c49a0e91e09f0344ed0929d2e6a6648648f68e042cd1e6f1",
+        "width_px": 1761,
+        "height_px": 893,
+        "format": "PNG raster"
+      },
+      "quantitative_values_sources": {
+        "results/diagnostics/length_residual.json": "6cf15b60e1673fffab101654c2405428785a6b361700521be84ac3d0b6a0b1c3",
+        "results/diagnostics/construct_alignment.json": "6cc3653a12c1c39ad04a9013a9530da776063f7673c701c6ee3290b312d3aac6",
+        "results/diagnostics/capability_routing.json": "bb8572cbddcbd4bae7cd05d07700c5ec0850c11b1a1cc9c7e70081e5bb303824"
+      }
+    }
+  ],
+  "validation": {
+    "visual_qa": "passed at original resolution and compiled manuscript scale",
+    "numeric_qa": "visible values, signs, intervals, denominators, axes, and routes checked against packaged artifacts"
+  }
+}

@@ -1,0 +1,271 @@
+{
+  "data": {
+    "books": 120,
+    "dimension_units": 1200,
+    "dimensions": [
+      "character_demand",
+      "vocabulary_demand",
+      "grammar_sentence_demand",
+      "discourse_demand",
+      "semantic_content_demand",
+      "character_plot_demand",
+      "genre_theme_demand",
+      "illustration_independence",
+      "pinyin_annotation_reduction",
+      "layout_density"
+    ],
+    "label_views": [
+      "p01",
+      "p02",
+      "p03",
+      "adjudicated"
+    ],
+    "source_distribution": {
+      "global_digital_library": 8,
+      "global_asp": 23,
+      "storyweaver": 89
+    }
+  },
+  "adjudicated_fixed_aggregates": {
+    "mean_all10": {
+      "label_view": "adjudicated",
+      "aggregate": "mean_all10",
+      "spearman": 0.9353798386388892,
+      "qwk_rounded": 0.8179848320693391,
+      "mae_rounded": 0.35,
+      "exact_rounded": 0.65,
+      "within_one_rounded": 1.0
+    },
+    "median_all10": {
+      "label_view": "adjudicated",
+      "aggregate": "median_all10",
+      "spearman": 0.934631360599239,
+      "qwk_rounded": 0.9037184594953519,
+      "mae_rounded": 0.24166666666666667,
+      "exact_rounded": 0.7583333333333333,
+      "within_one_rounded": 1.0
+    },
+    "upper_quartile_all10": {
+      "label_view": "adjudicated",
+      "aggregate": "upper_quartile_all10",
+      "spearman": 0.9203210693242911,
+      "qwk_rounded": 0.675191727105528,
+      "mae_rounded": 0.8666666666666667,
+      "exact_rounded": 0.3416666666666667,
+      "within_one_rounded": 0.8
+    },
+    "maximum_all10": {
+      "label_view": "adjudicated",
+      "aggregate": "maximum_all10",
+      "spearman": 0.1752801781367354,
+      "qwk_rounded": 0.024607414602557998,
+      "mae_rounded": 2.9583333333333335,
+      "exact_rounded": 0.016666666666666666,
+      "within_one_rounded": 0.08333333333333333
+    },
+    "mean_language7": {
+      "label_view": "adjudicated",
+      "aggregate": "mean_language7",
+      "spearman": 0.932334968581466,
+      "qwk_rounded": 0.8769622401357657,
+      "mae_rounded": 0.24166666666666667,
+      "exact_rounded": 0.7583333333333333,
+      "within_one_rounded": 1.0
+    },
+    "mean_presentation3": {
+      "label_view": "adjudicated",
+      "aggregate": "mean_presentation3",
+      "spearman": 0.8488129282849082,
+      "qwk_rounded": 0.4345526335394473,
+      "mae_rounded": 1.2916666666666667,
+      "exact_rounded": 0.10833333333333334,
+      "within_one_rounded": 0.6083333333333333
+    }
+  },
+  "adjudicated_bootstrap_95": {
+    "mean_all10": {
+      "spearman": {
+        "low": 0.906949523369928,
+        "median": 0.9343736118900737,
+        "high": 0.9516710836163641
+      },
+      "mae_rounded": {
+        "low": 0.26666666666666666,
+        "median": 0.35,
+        "high": 0.44166666666666665
+      },
+      "exact_rounded": {
+        "low": 0.5583333333333333,
+        "median": 0.65,
+        "high": 0.7333333333333333
+      }
+    },
+    "median_all10": {
+      "spearman": {
+        "low": 0.9049448876845163,
+        "median": 0.934276364976165,
+        "high": 0.955824850464054
+      },
+      "mae_rounded": {
+        "low": 0.16666666666666666,
+        "median": 0.24166666666666667,
+        "high": 0.31666666666666665
+      },
+      "exact_rounded": {
+        "low": 0.6833333333333333,
+        "median": 0.7583333333333333,
+        "high": 0.8333333333333334
+      }
+    },
+    "upper_quartile_all10": {
+      "spearman": {
+        "low": 0.8820753942929099,
+        "median": 0.9197809311907003,
+        "high": 0.9458560962461515
+      },
+      "mae_rounded": {
+        "low": 0.7333333333333333,
+        "median": 0.8666666666666667,
+        "high": 1.0
+      },
+      "exact_rounded": {
+        "low": 0.25833333333333336,
+        "median": 0.3416666666666667,
+        "high": 0.43333333333333335
+      }
+    },
+    "maximum_all10": {
+      "spearman": {
+        "low": 0.053114365225401694,
+        "median": 0.1755139852006765,
+        "high": 0.2912434567516827
+      },
+      "mae_rounded": {
+        "low": 2.7583333333333333,
+        "median": 2.9583333333333335,
+        "high": 3.1666666666666665
+      },
+      "exact_rounded": {
+        "low": 0.0,
+        "median": 0.016666666666666666,
+        "high": 0.041666666666666664
+      }
+    },
+    "mean_language7": {
+      "spearman": {
+        "low": 0.9029988433512857,
+        "median": 0.9313605115688435,
+        "high": 0.9506014273181714
+      },
+      "mae_rounded": {
+        "low": 0.16666666666666666,
+        "median": 0.24166666666666667,
+        "high": 0.31666666666666665
+      },
+      "exact_rounded": {
+        "low": 0.6833333333333333,
+        "median": 0.7583333333333333,
+        "high": 0.8333333333333334
+      }
+    },
+    "mean_presentation3": {
+      "spearman": {
+        "low": 0.7891965626771058,
+        "median": 0.8485775365972489,
+        "high": 0.8900833805445295
+      },
+      "mae_rounded": {
+        "low": 1.175,
+        "median": 1.2916666666666667,
+        "high": 1.4083333333333334
+      },
+      "exact_rounded": {
+        "low": 0.058333333333333334,
+        "median": 0.10833333333333334,
+        "high": 0.16666666666666666
+      }
+    }
+  },
+  "pre_adjudication_rater_mean_all10": {
+    "p01": {
+      "label_view": "p01",
+      "aggregate": "mean_all10",
+      "spearman": 0.9539565617972006,
+      "qwk_rounded": 0.8840538219295735,
+      "mae_rounded": 0.225,
+      "exact_rounded": 0.775,
+      "within_one_rounded": 1.0
+    },
+    "p02": {
+      "label_view": "p02",
+      "aggregate": "mean_all10",
+      "spearman": 0.9246275057388191,
+      "qwk_rounded": 0.7931466778102799,
+      "mae_rounded": 0.275,
+      "exact_rounded": 0.725,
+      "within_one_rounded": 1.0
+    },
+    "p03": {
+      "label_view": "p03",
+      "aggregate": "mean_all10",
+      "spearman": 0.9412651730561271,
+      "qwk_rounded": 0.8434004474272931,
+      "mae_rounded": 0.2916666666666667,
+      "exact_rounded": 0.7083333333333334,
+      "within_one_rounded": 1.0
+    }
+  },
+  "partial_spearman_mean_all10": {
+    "controls": [
+      "log_han_character_count",
+      "log_content_page_count",
+      "source_dataset"
+    ],
+    "point": 0.7197860873866108,
+    "bootstrap_95": {
+      "low": 0.5891307297926214,
+      "median": 0.7138771889755731,
+      "high": 0.7999310268007039
+    }
+  },
+  "source_descriptive_mean_all10": {
+    "global_asp": {
+      "books": 23,
+      "spearman": 0.8987778083290245,
+      "qwk_rounded": 0.6349206349206349,
+      "mae_rounded": 0.6086956521739131,
+      "exact_rounded": 0.391304347826087,
+      "within_one_rounded": 1.0,
+      "inferential_status": "descriptive_only"
+    },
+    "global_digital_library": {
+      "books": 8,
+      "spearman": 0.6843191382146413,
+      "qwk_rounded": 0.4666666666666667,
+      "mae_rounded": 0.25,
+      "exact_rounded": 0.75,
+      "within_one_rounded": 1.0,
+      "inferential_status": "descriptive_only"
+    },
+    "storyweaver": {
+      "books": 89,
+      "spearman": 0.9215549128780258,
+      "qwk_rounded": 0.809985219247824,
+      "mae_rounded": 0.29213483146067415,
+      "exact_rounded": 0.7078651685393258,
+      "within_one_rounded": 1.0,
+      "inferential_status": "descriptive_only"
+    }
+  },
+  "leave_one_dimension_out_mean": {
+    "spearman_range": [
+      0.9201422762707532,
+      0.9406333973823643
+    ],
+    "mae_range": [
+      0.16666666666666666,
+      0.38333333333333336
+    ]
+  },
+  "validity_boundary": "These are internal convergent-structure checks because the same professional annotators assigned global and dimension labels. They do not establish learner comprehension validity."
+}

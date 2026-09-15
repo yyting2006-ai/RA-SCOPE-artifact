@@ -1,0 +1,161 @@
+% =====================================================================
+%  Fig. 1  RA-SCOPE dataflow -- vector redraw (TikZ)
+%  Structure of the original raster schematic:
+%    panel A  evidence and experts      panel B  pool and support
+%    panel C  decision contract
+%  Coordinate system: x 0..18 cm, y 0..10 cm  (aspect ~1.8)
+% =====================================================================
+\begin{tikzpicture}[
+  x=1cm, y=1cm,
+  font=\sffamily,
+  >={Latex[length=1.5mm,width=1.3mm]},
+  every node/.style={inner sep=1.2pt, outer sep=0pt},
+  panelbg/.style={draw=PANELB, line width=0.5pt, rounded corners=3pt, fill=PANELF},
+  badge/.style={rounded corners=1.8pt, fill=NAVY, text=white,
+                font=\sffamily\bfseries\fontsize{7}{7}\selectfont,
+                minimum width=4.6mm, minimum height=4.4mm, inner sep=0pt},
+  hdr/.style={font=\sffamily\bfseries\fontsize{7.4}{7.4}\selectfont,
+              text=INK, anchor=west},
+  flow/.style={draw=BORDER, line width=0.5pt, rounded corners=2.2pt, fill=white,
+               align=center, font=\sffamily\fontsize{5.8}{6.8}\selectfont, text=INK},
+  fam/.style={draw=BORDER, line width=0.5pt, rounded corners=2.2pt, fill=white,
+              align=center, font=\sffamily\fontsize{5.7}{6.6}\selectfont, text=INK,
+              text width=2.15cm, minimum height=5.9mm},
+  coll/.style={draw=BORDER, line width=0.5pt, rounded corners=2.2pt, fill=white,
+               align=center, font=\sffamily\fontsize{5.7}{6.6}\selectfont, text=INK,
+               minimum width=1.62cm, minimum height=8.6mm},
+  lock/.style={draw=WARN, line width=0.6pt, rounded corners=2.2pt, fill=WARN!7,
+               align=center, font=\sffamily\fontsize{5.7}{6.6}\selectfont, text=INK,
+               minimum width=1.62cm, minimum height=8.6mm},
+  dec/.style={draw=BORDER, line width=0.5pt, fill=white, inner sep=0pt},
+  dectxt/.style={align=center, font=\sffamily\fontsize{4.8}{5.6}\selectfont,
+                 text=INK, text width=1.05cm},
+  cons/.style={draw=OK, line width=0.7pt, rounded corners=2.2pt, fill=OK!6,
+               align=center, font=\sffamily\fontsize{5.6}{6.5}\selectfont,
+               text=OK!70!black},
+  fail/.style={draw=WARN, line width=0.7pt, rounded corners=2.2pt, fill=WARN!6,
+               align=center, font=\sffamily\fontsize{5.7}{6.6}\selectfont,
+               text=WARN!80!black},
+  ar/.style={draw=LINE, line width=0.6pt, ->},
+  ard/.style={draw=LINE, line width=0.6pt, ->, dashed},
+  arok/.style={draw=OK, line width=0.7pt, ->},
+  arno/.style={draw=WARN, line width=0.6pt, ->},
+  lab/.style={font=\sffamily\fontsize{5.2}{6.0}\selectfont, text=INK},
+  laby/.style={font=\sffamily\fontsize{5.2}{6.0}\selectfont, text=OK!70!black},
+  labn/.style={font=\sffamily\fontsize{5.2}{6.0}\selectfont, text=WARN},
+  note/.style={draw=OK, line width=0.5pt, rounded corners=2.2pt, fill=OK!5,
+               align=left, font=\sffamily\fontsize{5.0}{5.9}\selectfont,
+               text=INK, text width=1.50cm, inner sep=2.6pt},
+]
+
+% ===================================================== panel backgrounds
+\draw[panelbg] (0.12,2.12) rectangle (5.58,9.62);
+\draw[panelbg] (5.86,2.12) rectangle (11.74,9.62);
+\draw[panelbg] (12.02,2.12) rectangle (17.88,9.62);
+
+% ============================================================ panel A
+\node[badge] at (0.52,9.26) {A};
+\node[hdr]  at (0.84,9.26) {Evidence and experts};
+
+\node[fam, minimum width=2.30cm, minimum height=1.20cm, text width=2.05cm]
+  (src) at (1.52,7.52) {\textbf{Source}\\[0.6pt]\textbf{development}\\[0.6pt]$n = 96$};
+
+\foreach \yy/\t in {8.62/Length ordinal, 7.94/Character TF-IDF,
+                    7.26/Standard measurements, 6.58/Fine-tuned MacBERT}{
+  \node[fam] at (4.32,\yy) {\t};
+}
+\draw[ar] (src.east) -- (2.92,7.52);
+\draw[LINE, line width=0.6pt] (2.92,6.58) -- (2.92,8.62);
+\foreach \yy in {8.62,7.94,7.26,6.58}{ \draw[ar] (2.92,\yy) -- (3.15,\yy); }
+
+\draw[ard, draw=OK] (src.south) -- (1.52,4.60);
+\node[lab, text=OK!70!black, anchor=west, align=left]
+  at (1.72,5.62) {trains /\\[-1.5pt]calibrates\\[-1.5pt]experts};
+
+\draw[LINE, line width=0.5pt, dashed] (0.42,4.28) -- (5.28,4.28);
+\node[coll] (cmain) at (1.00,3.50) {\textbf{Main}\\[0.6pt]$n = 120$};
+\node[coll] (crob)  at (2.85,3.50) {\textbf{Robustness}\\[0.6pt]$n = 28$};
+\node[lock] (cub)   at (4.70,3.50) {\textbf{Upper-band}\\[0.6pt]audit $n = 51$};
+
+\draw[decorate, decoration={brace, amplitude=2.6pt, mirror}, LINE, line width=0.5pt]
+  (0.32,2.92) -- (5.38,2.92);
+\node[lab, text=INK!85] at (2.85,2.50) {lineage-disjoint evaluation};
+
+% ============================================================ panel B
+\node[badge] at (6.26,9.26) {B};
+\node[hdr]  at (6.58,9.26) {Pool and support};
+
+\node[flow, minimum width=3.30cm, minimum height=1.02cm, text width=3.02cm]
+  (pool) at (8.28,8.50) {\textbf{Monotone uniform pool}\\[0.6pt]$0.25 \times 4$\\[0.6pt]0 trainable fusion parameters};
+
+\node[flow, minimum width=1.42cm, minimum height=0.52cm] (len) at (7.45,7.22) {length};
+\node[flow, minimum width=1.42cm, minimum height=0.52cm] (chr) at (9.11,7.22) {character};
+\draw[ar] (pool.south) -- (8.28,7.72);
+\draw[LINE, line width=0.6pt] (7.45,7.72) -- (9.11,7.72);
+\draw[ar] (7.45,7.72) -- (len.north);
+\draw[ar] (9.11,7.72) -- (chr.north);
+
+\node[flow, dashed, minimum width=3.16cm, minimum height=0.66cm, text width=2.92cm]
+  (agree) at (8.28,6.28) {full-anchor grade agreement};
+\draw[LINE, line width=0.6pt, dashed] (7.45,6.76) -- (9.11,6.76);
+\draw[ard] (len.south) -- (7.45,6.76);
+\draw[ard] (chr.south) -- (9.11,6.76);
+\draw[ard] (8.28,6.76) -- (agree.north);
+
+\node[flow, minimum width=2.95cm, minimum height=0.62cm, text width=2.72cm]
+  (supp) at (8.28,5.26) {source-distance support};
+\draw[ard] (agree.south) -- (supp.north);
+
+\node[flow, draw=OK, line width=0.6pt, minimum width=2.95cm, minimum height=0.62cm,
+      text width=2.72cm] (anch) at (8.28,4.24) {$\geq 1$ anchor supported};
+\draw[ard, draw=OK] (supp.south) -- (anch.north);
+
+\node[note, text width=5.26cm, font=\sffamily\fontsize{5.2}{6.1}\selectfont,
+      align=center] at (8.80,3.26)
+  {Grade agreement always involves both anchors. A single supported anchor can
+   license an existing full agreement, but it can never create consensus.};
+
+% ============================================================ panel C
+\node[badge] at (12.42,9.26) {C};
+\node[hdr]  at (12.74,9.26) {Decision contract};
+
+% decision nodes drawn as explicit polygons (predictable inscribed area)
+\draw[BORDER, fill=white, line width=0.5pt]
+  (12.25,8.30) -- (13.43,8.88) -- (14.61,8.30) -- (13.43,7.72) -- cycle;
+\node[dectxt, text width=1.25cm] at (13.43,8.30) {$\geq 1$ ANCHOR\\SUPPORTED?};
+
+\draw[BORDER, fill=white, line width=0.5pt]
+  (14.85,8.30) -- (16.19,8.96) -- (17.53,8.30) -- (16.19,7.64) -- cycle;
+\node[dectxt, text width=1.85cm] at (16.19,8.30) {LENGTH $=$\\CHARACTER GRADE?};
+
+\draw[arok] (14.61,8.30) -- node[laby, above, yshift=0.4pt]{yes} (14.85,8.30);
+
+\node[flow, minimum width=1.62cm, minimum height=0.86cm, text width=1.44cm]
+  (proj) at (17.00,6.55) {Closed-form projection\\retain $\geq 50\%$ anchor margin};
+\draw[arok] (17.53,8.30) -- (17.74,8.30) -- (17.74,7.58) -- (17.00,7.58) -- (proj.north);
+\node[laby] at (17.16,8.44) {yes};
+
+\node[cons, minimum width=1.62cm, minimum height=0.74cm, text width=1.44cm]
+  (consbox) at (17.00,5.26) {monotone ordinal probabilities\\\textbf{CONSENSUS}};
+\draw[arok] (proj.south) -- (consbox.north);
+
+\node[flow, minimum width=1.32cm, minimum height=0.54cm] (pp1) at (13.43,6.55) {pooled proposal};
+\draw[arno] (13.43,7.72) -- node[labn, left, xshift=-1.4pt]{no} (pp1.north);
+\node[fail, minimum width=1.50cm, minimum height=0.66cm] (nosup) at (13.43,5.26) {\textbf{NO-SUPPORT}};
+\draw[arno] (pp1.south) -- (nosup.north);
+
+\node[flow, minimum width=1.32cm, minimum height=0.54cm] (pp2) at (15.30,6.55) {pooled proposal};
+\draw[arno] (16.19,7.64) -- (16.19,7.20) -- (15.30,7.20) -- (pp2.north);
+\node[labn] at (16.02,7.31) {no};
+\node[fail, minimum width=1.50cm, minimum height=0.66cm] (conf) at (15.30,5.26) {\textbf{CONFLICT}};
+\draw[arno] (pp2.south) -- (conf.north);
+
+% legend
+\draw[LINE!55, line width=0.5pt] (12.22,4.32) -- (17.68,4.32);
+\node[lab, anchor=west, text=OK!70!black] at (12.30,3.82)
+  {\textcolor{OK}{\rule[0.9pt]{3.4pt}{3.4pt}}\;\;unique projection};
+\node[lab, anchor=west, text=OK!70!black] at (14.46,3.82)
+  {\textcolor{OK}{\rule[0.9pt]{3.4pt}{3.4pt}}\;\;active grade preserved};
+\node[lab, anchor=west] at (12.30,3.30)
+  {\textcolor{LINE}{\rule[1.4pt]{11pt}{0.7pt}}\;\;0 trainable projection parameters};
+\end{tikzpicture}

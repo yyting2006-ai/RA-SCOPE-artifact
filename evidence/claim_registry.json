@@ -1,0 +1,179 @@
+{
+  "registry_id": "ra_scope_claim_registry",
+  "manuscript": "RA-SCOPE: Support-Backed Full-Consensus Projection for Ordinal Picturebook Grading",
+  "claim_policy": "Every quantitative claim must be reproducible from a named artifact; formal claims must map to executable code and tests; limitations define the supported scope.",
+  "claims": [
+    {
+      "claim_id": "C01_METHOD_ACTIVATION",
+      "manuscript_location": "Section 4.2, Equation 4",
+      "claim": "Projection activates only when all anchors agree and at least one anchor is support-qualified; a singleton supported anchor cannot create consensus.",
+      "evidence": [
+        "src/scope_coling/ra_scope.py",
+        "tests/test_ra_scope.py"
+      ],
+      "validation": "Executable unit tests cover agreeing supported anchors, disagreeing anchors with one supported anchor, and agreement without support.",
+      "status": "validated"
+    },
+    {
+      "claim_id": "C02_PROJECTION_GUARANTEE",
+      "manuscript_location": "Section 4.3, Equations 5--7 and Propositions 1--2",
+      "claim": "The retained-margin operator is the unique Euclidean projection onto the active feasible set, yields a monotone cumulative distribution, and preserves the activated consensus grade.",
+      "evidence": [
+        "src/scope_coling/ra_scope.py",
+        "tests/test_ra_scope.py",
+        "results/global/summary.json"
+      ],
+      "validation": "Closed-form implementation, mathematical proof, invariant tests, and empirical preservation counts agree.",
+      "status": "validated"
+    },
+    {
+      "claim_id": "C03_MAIN_PERFORMANCE",
+      "manuscript_location": "Abstract, Table 2, Section 6.1",
+      "claim": "On 120 adjudicated books, RA-SCOPE obtains QWK 0.822717, MAE 0.416667, exact accuracy 0.591667, within-one accuracy 0.991667, and error-above-one rate 0.008333.",
+      "evidence": [
+        "results/global/summary.json",
+        "results/global/predictions.csv"
+      ],
+      "unit": "original-work lineage",
+      "status": "validated"
+    },
+    {
+      "claim_id": "C03A_ANNOTATION_RELIABILITY",
+      "manuscript_location": "Section 3.2",
+      "claim": "Independent P01--P03 ratings yield ordinal Krippendorff alpha 0.677 [0.594, 0.740] for 120 global grades and 0.586 [0.524, 0.638] for 1,200 criterion units.",
+      "evidence": [
+        "evidence/annotation_reliability.json"
+      ],
+      "unit": "book-bootstrap for global grades and criterion-unit summary",
+      "status": "validated"
+    },
+    {
+      "claim_id": "C04_PAIRED_MAIN_DIFFERENCES",
+      "manuscript_location": "Abstract, Figure 2B, Section 6.1",
+      "claim": "Main-set QWK differences versus uniform pooling, length, MacBERT, and Qwen2.5-3B are +0.032, +0.056, +0.060, and +0.285; their 95% paired lineage-bootstrap intervals exclude zero.",
+      "evidence": [
+        "results/global/paired_intervals.csv",
+        "results/global/predictions.csv"
+      ],
+      "resampling": "10,000 paired percentile-bootstrap samples over original-work lineages",
+      "status": "validated"
+    },
+    {
+      "claim_id": "C05_SEPARATE_ROBUSTNESS",
+      "manuscript_location": "Abstract, Table 2, Section 6.1",
+      "claim": "On the separately adjudicated 28-book collection, RA-SCOPE obtains QWK 0.786111, MAE 0.392857, exact accuracy 0.607143, and no errors above one level.",
+      "evidence": [
+        "results/global/summary.json",
+        "results/global/predictions.csv"
+      ],
+      "boundary": "The sample is small and contains no L5 or L6 books.",
+      "status": "validated"
+    },
+    {
+      "claim_id": "C06_SUPPORT_STATES",
+      "manuscript_location": "Figure 2C--D, Section 6.2",
+      "claim": "The main collection has 38 activated consensuses, 46 supported conflicts, and 36 no-support cases; activated grades are preserved in 38/38 main, 32/32 source-OOF, and 7/7 robustness cases.",
+      "evidence": [
+        "results/global/support_state_metrics.csv",
+        "results/global/summary.json",
+        "results/global/predictions.csv"
+      ],
+      "status": "validated"
+    },
+    {
+      "claim_id": "C07_SENSITIVITY",
+      "manuscript_location": "Figure 2D, Section 6.2",
+      "claim": "Across tested support cutoffs, main QWK ranges from 0.817 to 0.825 and robustness QWK remains 0.786; tested retained margins do not change point predictions.",
+      "evidence": [
+        "results/global/sensitivity.csv"
+      ],
+      "boundary": "This is a finite grid sensitivity analysis, not a universal invariance claim.",
+      "status": "validated"
+    },
+    {
+      "claim_id": "C08_EXPERT_DIVERSITY",
+      "manuscript_location": "Section 6.3",
+      "claim": "Experts disagree on 104/120 main books, mean pairwise disagreement is 0.576389, 42 prediction patterns occur, and every expert is uniquely exact on at least four books.",
+      "evidence": [
+        "results/diagnostics/expert_diversity.json",
+        "results/diagnostics/pairwise_disagreement.csv"
+      ],
+      "status": "validated"
+    },
+    {
+      "claim_id": "C09_PROBABILITY_DIAGNOSTICS",
+      "manuscript_location": "Table 3, Section 6.3",
+      "claim": "Relative to uniform pooling, RA-SCOPE improves ordinal Brier score, class NLL, and MAE risk-coverage AUC, while ECE increases slightly.",
+      "evidence": [
+        "results/global/summary.json"
+      ],
+      "boundary": "Probability metrics are descriptive on the 120-book main collection.",
+      "status": "validated"
+    },
+    {
+      "claim_id": "C10_LENGTH_DIAGNOSTICS",
+      "manuscript_location": "Section 6.4",
+      "claim": "After controlling log characters, log pages, and source, RA-SCOPE partial Spearman correlation is 0.400 with 95% interval [0.258, 0.545], while the length expert is -0.034 [-0.091, 0.090]; RA-SCOPE orders 17/24 counter-length pairs correctly.",
+      "evidence": [
+        "results/diagnostics/length_residual.json",
+        "results/diagnostics/counter_length_pairs.csv"
+      ],
+      "status": "validated"
+    },
+    {
+      "claim_id": "C11_SOURCE_AND_LEVEL_SLICES",
+      "manuscript_location": "Section 6.4",
+      "claim": "StoryWeaver and Global ASP slices obtain QWK/MAE 0.775/0.416 and 0.795/0.391; band-wise MAE is 0.500, 0.375, and 0.353 for L1--L2, L3, and L4--L5.",
+      "evidence": [
+        "results/diagnostics/source_and_level_slices.json",
+        "results/diagnostics/slice_metrics.csv"
+      ],
+      "boundary": "The eight-book GDL slice is descriptive only.",
+      "status": "validated"
+    },
+    {
+      "claim_id": "C12_CONSTRUCT_ALIGNMENT",
+      "manuscript_location": "Section 6.5",
+      "claim": "The mean of ten criterion grades correlates 0.935 [0.907, 0.952] with global grade and retains partial Spearman 0.720 [0.589, 0.800] after length, pages, and source controls.",
+      "evidence": [
+        "results/diagnostics/construct_alignment.json",
+        "results/diagnostics/construct_leave_one_out.csv"
+      ],
+      "boundary": "This is internal convergent evidence from common professional annotators, not learner-comprehension validity.",
+      "status": "validated"
+    },
+    {
+      "claim_id": "C13_CAPABILITY_ROUTING",
+      "manuscript_location": "Section 6.5",
+      "claim": "Observable-modality specialists increase criterion macro-QWK from 0.456 to 0.532 and reduce macro-MAE by 0.119; the illustration and pinyin specialists improve their designated criteria.",
+      "evidence": [
+        "results/diagnostics/capability_routing.json",
+        "results/diagnostics/criterion_predictions.csv"
+      ],
+      "boundary": "Specialist routing is supporting criterion evidence; it is not part of the global RA-SCOPE projection.",
+      "status": "validated"
+    },
+    {
+      "claim_id": "C14_QWEN_BASELINE",
+      "manuscript_location": "Table 2, Section 5 and Section 6",
+      "claim": "The deterministic Qwen2.5-3B rubric baseline uses restricted next-token scoring and obtains QWK/MAE 0.538/0.825 on main and 0.603/0.714 on robustness.",
+      "evidence": [
+        "results/qwen/summary.json",
+        "results/qwen/predictions.csv",
+        "results/qwen/prompt.txt"
+      ],
+      "boundary": "This baseline characterizes one open 3B zero-shot configuration and does not generalize to all LLMs.",
+      "status": "validated"
+    },
+    {
+      "claim_id": "C15_SCOPE_BOUNDARY",
+      "manuscript_location": "Limitations",
+      "claim": "Evidence is strongest for L1--L4; L5 is descriptive and L6 is untested; learner comprehension and prospective upper-level validation remain outside the present evidence.",
+      "evidence": [
+        "results/global/summary.json",
+        "paper/main.tex"
+      ],
+      "status": "explicitly_bounded"
+    }
+  ]
+}
