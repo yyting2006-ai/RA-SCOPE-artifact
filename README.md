@@ -66,9 +66,14 @@ that the four headline paired QWK intervals exclude zero, and checks the
 support-cutoff sensitivity range.
 
 Step 2 fits a multinomial logistic regression over the four experts' continuous
-ordinal scores under stratified $k$-fold cross-validation ($k\in\{4,5,6,10\}$,
-ten seeds each) and reports the paired book-level bootstrap against RA-SCOPE and
-the uniform pool.
+ordinal scores under lineage-grouped stratified $k$-fold cross-validation
+($k\in\{4,5,6,10\}$, ten seeds each). Folds are grouped by `split_group`, the
+original-work lineage key, matching the main protocol; on this collection every
+lineage holds a single evaluated book, so grouped and stratified folds coincide.
+The reported stacked row is the mean over the ten seeds at $k{=}5$, the
+difference row is the difference of the two rows above it, and the intervals are
+paired book-level bootstraps of that ten-seed mean against RA-SCOPE and the
+uniform pool.
 
 Step 3 runs 19 invariant tests covering monotonicity, activation, preservation,
 invalid input handling and the zero-parameter property. Step 4 confirms that
@@ -132,13 +137,13 @@ If you use this artifact, please cite the paper given at the top of this file.
 To reference the exact version archived with the submission, use the tag:
 
 ```
-https://github.com/yyting2006-ai/RA-SCOPE-artifact/tree/v1.0
+https://github.com/yyting2006-ai/RA-SCOPE-artifact/tree/v1.1
 ```
 
 An immutable archive of that tag is available as
 
 ```
-https://github.com/yyting2006-ai/RA-SCOPE-artifact/archive/refs/tags/v1.0.zip
+https://github.com/yyting2006-ai/RA-SCOPE-artifact/archive/refs/tags/v1.1.zip
 ```
 
 ## A note on the figures and on the added baseline

@@ -37,15 +37,16 @@
 
 \begin{document}
 
-\title{RA-SCOPE: An Auditable Zero-Parameter Ensemble for Ordinal
+\title{RA-SCOPE: An Auditable Zero-Parameter-Fusion Ensemble for Ordinal
 Difficulty Assessment of Second-Language Chinese Graded Readers}
 
 \author{
 \IEEEauthorblockN{Tingrui You\textsuperscript{1}, Na Zhang\textsuperscript{2},
 Ling Xiong\textsuperscript{2}, and Jimei Li\textsuperscript{2,*}}
-\IEEEauthorblockA{\textsuperscript{1}Hainan International College, China\\
-\textsuperscript{2}School of Information Science, Beijing Language and Culture
-University, Beijing, China\\
+\IEEEauthorblockA{Beijing Language and Culture University\\
+\textsuperscript{1}Hainan International College \quad
+\textsuperscript{2}School of Information Science\\
+Beijing, China\\
 Emails: yyt2006@163.com; zn17333099816@163.com; lingdonghua99@163.com;
 Ljm@blcu.edu.cn\\
 \textsuperscript{*}Corresponding author}
@@ -59,24 +60,24 @@ recurring educational-measurement task that currently depends on costly expert
 panels and produces results that are fragile across publishing platforms. We
 present RA-SCOPE, an auditable inference layer for ordinal, book-level
 difficulty assessment of L2 Chinese graded picturebooks. Four heterogeneous
-monotone experts---length, character n-gram, Standard-derived measurements, and
-a fine-tuned Chinese MacBERT---are combined by an unweighted probability pool
-that introduces no trainable fusion parameters. A label-free source-distance
-support rank licenses a closed-form Euclidean projection of the pooled logits
-onto a retained-margin ordinal set, applied only when two complementary anchors
-agree and at least one of them is backed by source evidence. Every item
-therefore carries an explicit state---CONSENSUS, CONFLICT, or NO-SUPPORT---that
-a human review workflow can act on, and every activated consensus grade is
-preserved by construction. On 120 independently triple-annotated and adjudicated
-Chinese picturebooks, RA-SCOPE reaches .823 quadratic weighted kappa and .417
-MAE, improving on fine-tuned MacBERT by .060 and on a Qwen2.5-3B rubric baseline
-by .285 (paired 95\% intervals exclude zero), and halving the rate of errors
-exceeding one level. A separately adjudicated 28-book collection reproduces the
-ordering with no error above one level, and counter-length analyses show that
-the gains are not a length artifact. A stacked logistic fusion fitted on
-target-collection labels reaches .844 QWK and .275 MAE under cross-validation,
-trading the zero-parameter property and the preservation guarantee for lower
-absolute error.
+monotone experts (length, character n-gram, Standard-derived measurements, and a
+fine-tuned Chinese MacBERT) are combined by an unweighted probability pool that
+introduces no trainable fusion parameters. A label-free source-distance support
+rank licenses a closed-form Euclidean projection of the pooled logits onto a
+retained-margin ordinal set. The projection is applied only when the two
+complementary anchors agree and at least one of them is backed by source
+evidence. Every item therefore carries an explicit state (CONSENSUS, CONFLICT,
+or NO-SUPPORT) that a human review workflow can act on. On 120 independently
+triple-annotated and adjudicated Chinese picturebooks, RA-SCOPE reaches .823
+quadratic weighted kappa and .417 MAE, improving on fine-tuned MacBERT by .060
+and on a Qwen2.5-3B rubric baseline by .285 with paired 95\% intervals that
+exclude zero, and it halves the rate of errors exceeding one level. It retains
+.786 QWK and .393 MAE with no errors above one level on a separately
+adjudicated 28-book collection. A post-hoc stacked logistic fusion reaches .844
+QWK and .277 MAE where target labels exist, trading the zero-parameter property
+and the preservation guarantee for lower absolute error. Every activated
+consensus grade is preserved by construction, and every decision can be
+re-executed by hand.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -89,18 +90,19 @@ assessment, auditable machine learning, human-in-the-loop review
 %=====================================================================
 
 Placing a graded reader at the right level is a routine but consequential
-educational-measurement decision. Publishers, reading programmes and
+educational-measurement decision. Publishers, reading programs and
 curriculum teams must decide whether a book belongs at level~1 or level~4, and
-the decision is made under a published standard---the Chinese Graded Readers
-Standards for International Chinese Language Education~\cite{cllc2024standards}---rather
-than by preference.
-Today it is made by expert panels: the collections used in this study were
-graded by three annotators with International Chinese Education training who
-each contributed approximately 20~hours, followed by adjudication by a fourth.
-The cost of that process does not scale with catalogue growth, and its output
-is fragile across sources---books that look comparable in length are graded
-differently by different publishers because layout, illustration and annotation
-conventions differ sharply.
+the decision is made under a published standard (the Chinese Graded Readers
+Standards for International Chinese Language Education~\cite{cllc2024standards})
+rather than by preference.
+
+Today the decision is made by expert panels: the collections used in this study
+were graded by three annotators with International Chinese Education training
+who each contributed approximately 20~hours, followed by adjudication by a
+fourth. The cost of that process does not scale with catalog growth, and its
+output is fragile across sources: books that look comparable in length are
+graded differently by different publishers because layout, illustration and
+annotation conventions differ sharply.
 
 Automatic alternatives are available, but average fit is not what a review
 workflow needs. A fine-tuned Chinese encoder reaches .763 quadratic weighted
@@ -115,7 +117,7 @@ Ensembles of ordinal experts make the situation sharper rather than simpler.
 Pooling heterogeneous ordinal predictors is known to help, and projection
 methods repair order violations, but the literature does not specify which
 evidence-backed ordinal decisions a heterogeneous ensemble is permitted to
-overturn. That question---not the pooling arithmetic---is what determines
+overturn. That question, rather than the pooling arithmetic, is what determines
 whether an automated grade can be adopted in practice.
 
 We address it with RA-SCOPE (Reliability-Anchored Support-Backed Consensus
@@ -125,7 +127,7 @@ source-only nearest-neighbour distances become finite-sample support ranks. A
 projection is licensed only when both anchors predict the same grade and at
 least one of them has sufficient support. It is the unique Euclidean projection
 of the pooled logits onto a retained-margin ordinal set, with a closed-form
-solution and no fitted fusion parameters. Fig.~\ref{fig:dataflow} summarises the
+solution and no fitted fusion parameters. Fig.~\ref{fig_dataflow} summarizes the
 design.
 
 Our contributions are:
@@ -139,22 +141,23 @@ single supported anchor to a multi-anchor consensus;
 \item a closed-form constrained projection with proofs of monotonicity,
 uniqueness, and activated-grade preservation; and
 \item analyses of support states, hyperparameter sensitivity, length residuals,
-counter-length pairs, Standard-derived construct alignment, and
-observable-modality routing.
+counter-length pairs, Standard-derived construct alignment,
+observable-modality routing, and a learned-fusion comparison that quantifies
+the price of auditability.
 \end{itemize}
 
 RA-SCOPE is an inference layer rather than a replacement model. It consumes the
 cumulative probability chains that the four experts already emit, introduces no
 trainable fusion parameters, and returns for each book an ordinal distribution
 together with one of three states. That output is what allows the system to be
-placed in front of, or behind, an existing human review queue: Section~\ref{sec:deploy}
-sets out the resulting triage behaviour and its measured cost.
+placed in front of, or behind, an existing human review queue: Section~\ref{sec_deploy}
+sets out the resulting triage behavior and its measured cost.
 
 %=====================================================================
 \section{Related Work}
 %=====================================================================
 
-\subsection{Readability and Ordinal Modelling}
+\subsection{Readability and Ordinal Modeling}
 Automatic readability assessment has moved from lexical, syntactic, discourse
 and psycholinguistic measurements~\cite{xia2016text,deutsch2020linguistic} to
 hybrid models that combine pretrained encoders with handcrafted
@@ -164,7 +167,7 @@ and cumulative rank models enforce ordered
 thresholds~\cite{cao2020rank}. Chinese work includes Standard-derived feature
 quantification~\cite{li2025quantification}, adaptive pretraining with feature
 fusion~\cite{yang2025chinese}, and book-level long-text
-modelling~\cite{li2024going}. We focus on inference-time composition and
+modeling~\cite{li2024going}. We focus on inference-time composition and
 decision guarantees rather than on another encoder objective.
 
 \subsection{Ordinal Ensembles and Projection}
@@ -204,8 +207,8 @@ Books come from StoryWeaver~\cite{pratham2026storyweaver}, the Global African
 Storybook Project~\cite{gasp2026repository}, and the Global Digital
 Library~\cite{gdl2026api}. Original-work lineages were audited before analysis;
 no book or lineage crosses the source-development and evaluation collections
-(Table~\ref{tab:collections}). Annotators P01--P03 independently annotated
-randomised spreadsheets; P04 then adjudicated disagreements and checked the
+(Table~\ref{tab_collections}). Annotators P01--P03 independently annotated
+randomized spreadsheets; P04 then adjudicated disagreements and checked the
 original sources, and is excluded from inter-rater reliability. All four had
 International Chinese Education training and each contributed approximately
 20~hours. On the 120-book main collection, ordinal Krippendorff's
@@ -217,7 +220,7 @@ for every book.
 
 \begin{table}[t]
 \caption{Lineage-Disjoint Evidence Collections}
-\label{tab:collections}
+\label{tab_collections}
 \centering
 \footnotesize
 \begin{tabular}{lrl}
@@ -254,7 +257,7 @@ uses three complete seeds, three epochs, and four sampled pages per book and
 epoch. The uniform pool is
 \begin{equation}
 \bar{p}_{ik} = \frac{1}{4}\sum_{e=1}^{4} p_{ik}^{e},
-\label{eq:pool}
+\label{eq_pool}
 \end{equation}
 which introduces no trainable fusion parameters.
 
@@ -295,7 +298,7 @@ RA-SCOPE returns
 \begin{equation}
 z_i^{\star} = \operatorname*{arg\,min}_{z \in \mathcal{C}_i}
 \tfrac{1}{2}\lVert z - \bar{z}_i \rVert_2^2,
-\label{eq:proj}
+\label{eq_proj}
 \end{equation}
 and otherwise returns $\bar{z}_i$. The solution is coordinate-wise clipping:
 \begin{equation}
@@ -304,11 +307,11 @@ z_{ik}^{\star} =
 \max\!\left(\bar{z}_{ik},\, \lambda \max_{e} z_{ik}^{e}\right), & k \le g_i^{\star},\\[2pt]
 \min\!\left(\bar{z}_{ik},\, \lambda \min_{e} z_{ik}^{e}\right), & k > g_i^{\star}.
 \end{cases}
-\label{eq:clip}
+\label{eq_clip}
 \end{equation}
 
 \noindent\textbf{Proposition 1 (valid ordinal output).} \emph{The pool in
-(\ref{eq:pool}) and the projected probabilities
+(\ref{eq_pool}) and the projected probabilities
 $\sigma(z_i^{\star})$ are non-increasing cumulative chains.}
 
 \noindent\emph{Proof.} Convex combinations preserve every adjacent inequality.
@@ -318,27 +321,30 @@ the shared positive prefix and negative suffix; their sign boundary cannot
 invert. \hfill$\blacksquare$
 
 \noindent\textbf{Proposition 2 (unique consensus preservation).} \emph{For
-$0 < \lambda \le 1$, (\ref{eq:clip}) is the unique Euclidean projection in
-(\ref{eq:proj}), and its point grade is $g_i^{\star}$.}
+$0 < \lambda \le 1$, (\ref{eq_clip}) is the unique Euclidean projection in
+(\ref{eq_proj}), and its point grade is $g_i^{\star}$.}
 
 \noindent\emph{Proof.} The objective is strictly convex and $\mathcal{C}_i$ is
 non-empty, closed and convex~\cite{boyd2004convex}. Coordinate clipping is the
 Euclidean projection onto the retained-margin box; Proposition~1 places that
 solution inside its monotone intersection, so it also solves
-(\ref{eq:proj}). Every prefix bound is non-negative and every suffix bound is
+(\ref{eq_proj}). Every prefix bound is non-negative and every suffix bound is
 negative, preserving all threshold signs and therefore $g_i^{\star}$.
 \hfill$\blacksquare$
 
 \begin{figure*}[!t]
 \centering
 \resizebox{\textwidth}{!}{\input{figs/fig1_dataflow.tex}}
-\caption{RA-SCOPE dataflow. Four monotone experts form a parameter-free uniform
-pool. The decision contract first checks whether at least one anchor is
-source-supported, then whether the length and character grades agree. Supported
+\caption{RA-SCOPE dataflow. The source-development collection trains the
+experts and calibrates the support rank. Four monotone experts form a
+parameter-free uniform pool. The decision contract first checks whether at least
+one anchor is source-supported, then whether the length and character grades
+agree; grade agreement always involves both anchors, and support from a single
+anchor can license an existing agreement but never create one. Supported
 agreement activates projection and returns CONSENSUS; supported disagreement
 retains the pool and returns CONFLICT; absence of support retains the pool and
 returns NO-SUPPORT.}
-\label{fig:dataflow}
+\label{fig_dataflow}
 \end{figure*}
 
 %=====================================================================
@@ -377,15 +383,15 @@ model identifiers, prompt hashes, and SHA-256 inventories.
 
 \subsection{Global Grading}
 RA-SCOPE reaches .823 QWK and .417 MAE on the main collection
-(Table~\ref{tab:main}). Two properties matter more for deployment than the
+(Table~\ref{tab_main}). Two properties matter more for deployment than the
 QWK delta. First, the rate of errors exceeding one level falls from .017 for the
 uniform pool to .008, halving a failure mode that is far costlier than an
 off-by-one grade. Second, the gains over the strongest individual comparator are
 substantial and their intervals are far from zero: $+.060$ $[.008,.118]$ QWK and
 $-{.142}$ $[-.250,-.033]$ MAE against fine-tuned MacBERT, and $+.285$
 $[.173,.403]$ QWK and $-.408$ $[-.600,-.217]$ MAE against the Qwen2.5-3B rubric
-baseline. Relative to uniform pooling---itself a strong heterogeneous
-baseline---the direct QWK gain is $+.032$ $[.005,.066]$ with an MAE change of
+baseline. Relative to uniform pooling, itself a strong heterogeneous
+baseline, the direct QWK gain is $+.032$ $[.005,.066]$ with an MAE change of
 $-.042$ $[-.092,.008]$.
 
 Source-only out-of-fold predictions obtain .858 QWK and .406 MAE with one error
@@ -396,8 +402,10 @@ $[.008,.313]$ QWK respectively. The interval against length includes zero, as
 expected for 28 books.
 
 \begin{table}[t]
-\caption{Global Grading. Ablations change only projection activation.}
-\label{tab:main}
+\caption{Global Grading. The support-disabled ablation applies projection on
+full anchor agreement without the support condition; it gives identical point
+predictions to RA-SCOPE on both collections.}
+\label{tab_main}
 \centering
 \footnotesize
 \setlength{\tabcolsep}{3.2pt}
@@ -415,6 +423,7 @@ Qwen2.5-3B rubric      & .538 & .825 & .425 & .183 & .603 & .714 \\
 Uniform probability pool & .790 & .458 & .558 & .017 & .786 & .393 \\
 \midrule
 RA-SCOPE               & \textbf{.823} & \textbf{.417} & \textbf{.592} & \textbf{.008} & \textbf{.786} & \textbf{.393} \\
+Support disabled       & .823 & .417 & .592 & .008 & .786 & .393 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -423,7 +432,7 @@ RA-SCOPE               & \textbf{.823} & \textbf{.417} & \textbf{.592} & \textbf
 The support contract is a decision-audit mechanism rather than an accuracy
 lever. On these collections the three unsupported agreements do not cross a
 decision threshold, so disabling the support condition yields identical point
-grades (Table~\ref{tab:states}); requiring both anchors to be supported gives
+grades (Table~\ref{tab_main}, final row); requiring both anchors to be supported gives
 .815/.425 and allowing a singleton qualified subset to activate gives .799/.450.
 The contract's value appears instead in the state distribution it exposes. The
 main collection contains 38 support-backed full consensuses, 46 supported
@@ -437,7 +446,7 @@ margin produces identical point grades.
 
 \begin{table}[t]
 \caption{Support States on the Main Collection. Every route returns a grade.}
-\label{tab:states}
+\label{tab_states}
 \centering
 \footnotesize
 \begin{tabular}{lccp{3.3cm}}
@@ -459,25 +468,28 @@ RA-SCOPE and six comparators; circles and diamonds distinguish the two
 independently adjudicated collections. (b)~Direct paired QWK gains for the four
 prespecified main comparisons and two robustness comparisons; bars are 95\%
 lineage-bootstrap intervals.}
-\label{fig:performance}
+\label{fig_performance}
 \end{figure*}
 
 \subsection{Learned Fusion Baseline}
-\label{sec:stack}
+\label{sec_stack}
 RA-SCOPE is deliberately zero-parameter, so the natural objection is that a
 fitted fusion over the same experts would do better. As a post-hoc analysis we
 test this directly.
-Using the four experts' continuous ordinal scores from the frozen artifact we
-fit a multinomial logistic regression on the 120-book collection under
-stratified $k$-fold cross-validation ($k\in\{4,5,6,10\}$, ten seeds each) and
-pool the out-of-fold predictions; Table~\ref{tab:stack} reports the $k{=}5$
-result. Learned fusion is competitive on QWK and clearly better on absolute
-error. Its QWK is .844 against .823 (difference $+.025$, 95\% book-bootstrap CI
-$[-.023,+.074]$, i.e.\ not distinguishable at this sample size), but its MAE is
-.275 against .417 (difference $-.142$, CI $[-.250,-.042]$) and its
-catastrophic-error rate is .002 against .008. Per book, the stacked model has
-lower absolute error on 30 items, the same on 77 and higher on 13, and the
-result is stable across all four fold counts.
+Using the four experts' continuous ordinal scores from the frozen artifact
+(four features per book: length, character TF--IDF, Standard-derived
+measurements, and fine-tuned MacBERT), we fit a multinomial logistic regression
+on the 120-book collection. Folds are grouped by original-work lineage,
+matching the main protocol; every lineage holds a single evaluated book on this
+collection, so grouped and stratified folds coincide. We repeat the
+cross-validation over ten seeds at $k\in\{4,5,6,10\}$ and report the mean over
+the ten seeds at $k{=}5$, which Table~\ref{tab_stack} gives. Learned fusion is
+competitive on QWK and clearly better on absolute error. Its QWK is .844 against
+.823, a difference of $+.021$ (95\% book-bootstrap CI $[-.026,+.071]$, that is,
+not distinguishable at this sample size), while its MAE is .277 against .417, a
+difference of $-.140$ (CI $[-.248,-.035]$), and its catastrophic-error rate is
+.001 against .008. The advantage is stable across all four fold counts, with QWK
+between .844 and .848.
 
 The comparison is not a like-for-like substitution, and the difference is
 precisely the property RA-SCOPE was designed for. The stacked model is fitted
@@ -485,15 +497,16 @@ with access to target-collection labels: it cannot be constructed for a
 platform on which no adjudicated books exist, and its per-item decision rule is
 a fitted weight vector rather than an inspectable contract. RA-SCOPE consumes no
 target labels and every activated consensus grade remains provably preserved.
-We therefore read Table~\ref{tab:stack} as the measured price of auditability on
+We therefore read Table~\ref{tab_stack} as the measured price of auditability on
 this collection rather than as a defect of the contract: on MAE the contract
 pays about .14 levels while retaining the guarantee, the state semantics and
 cold-start operation.
 
 \begin{table}[t]
 \caption{Learned Fusion Versus the Zero-Parameter Contract. The stacked row is
-the mean over ten seeds at $k{=}5$; intervals are given in the text.}
-\label{tab:stack}
+the mean over ten seeds of a lineage-grouped cross-validation at $k{=}5$; the
+difference row is the difference of the two rows above.}
+\label{tab_stack}
 \centering
 \footnotesize
 \setlength{\tabcolsep}{5pt}
@@ -502,9 +515,9 @@ the mean over ten seeds at $k{=}5$; intervals are given in the text.}
 Method & QWK & MAE & Exact & $>\!1$ \\
 \midrule
 RA-SCOPE (no target labels)      & .823 & .417 & .592 & .008 \\
-Stacked logistic (5-fold CV)     & \textbf{.844} & \textbf{.275} & \textbf{.727} & \textbf{.002} \\
+Stacked logistic (5-fold CV)     & \textbf{.844} & \textbf{.277} & \textbf{.724} & \textbf{.001} \\
 \midrule
-Difference                       & $+.025$ & $-.142$ & $+.135$ & $-.006$ \\
+Difference                       & $+.021$ & $-.140$ & $+.132$ & $-.007$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -528,11 +541,11 @@ sharpening probabilities without regard to ranking or coverage.
 
 \subsection{Length, Source, and Level Stress Tests}
 RA-SCOPE's continuous score has Spearman $\rho = .901$ with the gold level.
-After residualising both variables for log character count, log page count and
+After residualizing both variables for log character count, log page count and
 source, partial $\rho = .400$ $[.258,.545]$, whereas the length expert gives
 $-.034$ $[-.091,.090]$; their paired partial-correlation difference is
-$[.238,.573]$. On 24 disjoint counter-length pairs---where character count
-orders two books opposite to their gold levels---RA-SCOPE orders the pair
+$[.238,.573]$. On 24 disjoint counter-length pairs, where character count
+orders two books opposite to their gold levels, RA-SCOPE orders the pair
 correctly with .708 accuracy $[.500,.875]$, compared with .000 for length by
 construction. On 56 nearest different-level disjoint pairs it reaches .875
 $[.786,.946]$. Source slices are consistent with the aggregate result:
@@ -550,7 +563,7 @@ disjoint counter-length and nearest different-level pairs. (c)~Convergent
 alignment between the global grade and Standard-derived criteria.
 (d)~Criterion-level gains from routing illustration and pinyin to
 observable-modality specialists.}
-\label{fig:validity}
+\label{fig_validity}
 \end{figure*}
 
 \subsection{Construct and Modality Evidence}
@@ -569,32 +582,33 @@ text route because source families expose incomparable page geometry.
 
 %=====================================================================
 \section{Deployment and Human-in-the-Loop Review}
-\label{sec:deploy}
+\label{sec_deploy}
 %=====================================================================
 
 RA-SCOPE is designed to sit inside an existing review process rather than to
 replace it, and the measurements above translate directly into operating
-behaviour.
+behavior.
 
 \noindent\textbf{Cost.} The layer itself is closed-form and adds negligible
 overhead to the four experts it composes. The expensive components are the
 experts: MacBERT training used one RTX~4060 Laptop GPU for approximately 7.7
 GPU-minutes across three seeds, and the Qwen2.5-3B rubric baseline scored 244
 books in 237~seconds using bfloat16 with 8.93~GB peak allocated GPU memory. The
-pooled projection is a coordinate-wise clip (Eq.~\ref{eq:clip}) and can be
+pooled projection is a coordinate-wise clip (Eq.~\ref{eq_clip}) and can be
 re-executed by a reviewer by hand.
 
-\noindent\textbf{Triage.} Because exact accuracy stratifies by state
-(.711/.565/.500), a workflow can auto-accept CONSENSUS items and route CONFLICT
-and NO-SUPPORT items to human adjudication. On the main collection this
-concentrates scarce expert time on 82 of 120 books while the 38 automatically
-accepted items are the ones on which the system is most accurate. Nothing is
-hidden: every item still receives an ordinal distribution, and the state is
-reported alongside it.
+\noindent\textbf{Triage.} Accuracy stratifies by state. On the main collection,
+CONSENSUS items are exact 71.1\% of the time and are never more than one level
+away ($n{=}38$, within-one accuracy 1.000), whereas CONFLICT and NO-SUPPORT
+items are exact 56.5\% and 50.0\% of the time ($n{=}46$ and $n{=}36$). A
+workflow can therefore accept CONSENSUS grades under a one-level tolerance and
+route CONFLICT and NO-SUPPORT items to human adjudication, which concentrates
+scarce expert time on 82 of 120 books. Nothing is hidden: every item still
+receives an ordinal distribution, and the state is reported alongside it.
 
-\noindent\textbf{Preservation.} The guarantee in Proposition~2 is what makes
-auto-acceptance defensible. When the two anchors agree and at least one is
-support-eligible, the projection provably returns that agreed grade---observed
+\noindent\textbf{Preservation.} The guarantee in Proposition~2 is what makes this
+routing defensible. When the two anchors agree and at least one is
+support-eligible, the projection provably returns that agreed grade: observed
 as 38/38, 32/32 and 7/7 preservation on the main, source out-of-fold and
 robustness collections. Adopting a CONSENSUS grade therefore cannot overturn a
 decision that the evidence already supported.
@@ -603,7 +617,7 @@ decision that the evidence already supported.
 calibrating the support rank requires only the 96-book source-development
 collection; no labels from the new platform are needed. This is where the
 zero-parameter design pays for itself, because the stacked fusion of
-Section~\ref{sec:stack} cannot be constructed at all until adjudicated books
+Section~\ref{sec_stack} cannot be constructed at all until adjudicated books
 exist on the target platform. Source-slice results
 (.775 QWK for StoryWeaver, .795 for Global ASP) indicate that the same
 configuration transfers across platforms, and the per-item support state makes
@@ -623,26 +637,26 @@ complete ordinal distribution.
 
 The empirical pattern is equally specific. Uniform pooling already supplies a
 strong heterogeneous baseline. Projection changes only nine main-set absolute
-errors relative to that pool (seven improve, two worsen), yet this is enough for
+errors relative to that pool (seven improve, two worsen), and this is enough for
 a positive paired QWK interval and halves the frequency of errors above one
 level. Gains over length survive covariate control and counter-length
-comparisons, while the Qwen rubric baseline reveals substantial platform
+comparisons, while the Qwen rubric baseline shows substantial platform
 sensitivity despite explicit instructions not to use length alone. Capability
 routing further shows that illustration and pinyin criteria benefit from
 evidence unavailable to a text-only global model.
 
 \noindent\textbf{Why zero-parameter pooling rather than learned fusion.}
-Zero-parameter pooling is a design requirement, not a convenience. A learned
-fusion layer must be fitted on labelled books; because source platforms differ
-sharply in layout, length and illustration conventions, such a layer transfers
-its fitting-platform label distribution to new platforms, and its per-item
-weights are not inspectable. RA-SCOPE consumes exactly one quantity from
-held-out data---a label-free distance rank---so Eq.~\ref{eq:clip} can be
-re-executed and audited item by item. Where a fitted alternative is affordable
-it does raise average fit: the stacked fusion of Section~\ref{sec:stack} reduces
-MAE by .142 relative to the contract. Our claim concerns decision guarantees and
-auditability under platform shift, not the best average fit on a labelled target
-collection.
+Zero-parameter pooling is a design requirement, not a convenience. Source
+platforms differ sharply in layout, length and illustration conventions. A
+learned fusion layer must be fitted on labeled books, so it carries its
+fitting-platform label distribution into the next platform, and its per-item
+weights are not inspectable. RA-SCOPE's fusion layer is itself unfitted: given
+the four expert chains, Eq.~\ref{eq_clip} can be re-executed and audited item by
+item, which a fitted weight vector does not permit. Where a fitted alternative
+is affordable it does raise average fit: the stacked fusion of
+Section~\ref{sec_stack} reduces MAE by .140 relative to the contract. Our claim
+concerns decision guarantees and auditability under platform shift, not the best
+average fit on a labeled target collection.
 
 %=====================================================================
 \section{Limitations and Ethical Considerations}
@@ -670,7 +684,7 @@ and independent ratings precede separate adjudication. Predictions are intended
 to assist human material review: conflict, no-support and upper-band cases
 remain visible rather than being presented as certified decisions. Restricted
 book text and illustrations remain with their source providers, and users must
-preserve applicable attribution and licence conditions. The Standard may
+preserve applicable attribution and license conditions. The Standard may
 privilege standard written Mandarin and conventional print layouts; dialectal,
 culturally specific, accessibility-relevant and visually driven materials
 require human validation.
@@ -683,8 +697,9 @@ We presented a support-backed full-consensus projection for ordinal picturebook
 grading. It combines four monotone experts without fitted fusion parameters,
 attaches an explicit support state to every item, and uniquely preserves every
 activated anchor-consensus grade. Across source-only out-of-fold, main and
-separate robustness evaluations it improves the strongest individual experts
-and the uniform pool while remaining stable across support and margin settings.
+separate robustness evaluations it improves or matches the strongest individual
+experts and the uniform pool while remaining stable across support and margin
+settings.
 The result is a compact inference architecture whose accuracy, decision
 semantics and evidence boundary can all be audited, and whose states translate
 directly into human review triage.
@@ -695,8 +710,8 @@ directly into human review triage.
 
 This work was supported by the National College Students' Innovation and
 Entrepreneurship Training Program (No.~202610032033). The reproducibility
-artifact---the projection module, its invariant tests, every per-book
-prediction, the reported tables and the figure sources---is available at
+artifact (the projection module, its invariant tests, every per-book
+prediction, the reported tables and the figure sources) is available at
 \url{https://github.com/yyting2006-ai/RA-SCOPE-artifact}.
 
 \bibliographystyle{IEEEtran}

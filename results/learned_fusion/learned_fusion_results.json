@@ -1,15 +1,34 @@
 {
   "dataset": "core120",
   "books": 120,
-  "features": [
-    "length_ordinal",
-    "char_tfidf",
-    "standard_measurements",
-    "finetuned_macbert"
-  ],
+  "features": {
+    "names": [
+      "length_ordinal",
+      "char_tfidf",
+      "standard_measurements",
+      "finetuned_macbert"
+    ],
+    "columns": [
+      "score_length_ordinal",
+      "score_char_tfidf",
+      "score_standard_measurements",
+      "score_finetuned_macbert"
+    ],
+    "dimensions": 4
+  },
   "protocol": {
     "model": "multinomial logistic regression",
-    "cv": "stratified k-fold, k in [4, 5, 6, 10], 10 seeds",
+    "cv": "lineage-grouped stratified k-fold, k in [4, 5, 6, 10], 10 seeds",
+    "grouping": {
+      "key": "split_group (original-work lineage)",
+      "lineages": 120,
+      "books_per_lineage": {
+        "min": 1,
+        "max": 1
+      },
+      "note": "every lineage holds a single evaluated book, so grouped and stratified folds coincide on this collection"
+    },
+    "reported_prediction": "per-book consensus of the ten out-of-fold predictions, which is what the paired book-level bootstrap is computed on",
     "notes": "stack is scored out-of-fold; comparators need no fitting"
   },
   "comparators": {
@@ -28,66 +47,90 @@
   },
   "stability_across_folds": {
     "4-fold": {
-      "qwk_mean": 0.8375863269209758,
-      "qwk_sd": 0.01969077458244975,
-      "mae_mean": 0.2866666666666667,
-      "mae_sd": 0.03210226714043036
+      "qwk_mean": 0.8463728207704924,
+      "qwk_sd": 0.010576878000434864,
+      "mae_mean": 0.2725,
+      "mae_sd": 0.021746647251166488
     },
     "5-fold": {
-      "qwk_mean": 0.8443959674010608,
-      "qwk_sd": 0.006259522058621064,
-      "mae_mean": 0.275,
-      "mae_sd": 0.01178511301977579
+      "qwk_mean": 0.8441214068394703,
+      "qwk_sd": 0.01527314645439646,
+      "mae_mean": 0.27666666666666667,
+      "mae_sd": 0.025221243250702585
     },
     "6-fold": {
-      "qwk_mean": 0.8432104894955007,
-      "qwk_sd": 0.00933370316710737,
-      "mae_mean": 0.27666666666666667,
-      "mae_sd": 0.015723301886761007
+      "qwk_mean": 0.8475833697634817,
+      "qwk_sd": 0.010914518184066196,
+      "mae_mean": 0.2666666666666667,
+      "mae_sd": 0.01394433377556793
     },
     "10-fold": {
-      "qwk_mean": 0.8422497156476167,
-      "qwk_sd": 0.009818907137754506,
-      "mae_mean": 0.27999999999999997,
-      "mae_sd": 0.014043582955293924
+      "qwk_mean": 0.8452578394729088,
+      "qwk_sd": 0.007082253557657522,
+      "mae_mean": 0.275,
+      "mae_sd": 0.013437096247164246
     }
   },
   "stacked_logistic": {
-    "consensus_metrics": {
-      "qwk": 0.8471750540290213,
-      "mae": 0.275,
-      "exact_accuracy": 0.725,
+    "reported": "mean over ten seeds at k=5",
+    "metrics_mean": {
+      "qwk": 0.8441214068394703,
+      "mae": 0.27666666666666667,
+      "exact_accuracy": 0.7241666666666667,
+      "error_above_one_rate": 0.0008333333333333333
+    },
+    "metrics_sd": {
+      "qwk": 0.01527314645439646,
+      "mae": 0.025221243250702585,
+      "exact_accuracy": 0.02340761984198023,
+      "error_above_one_rate": 0.0024999999999999996
+    },
+    "seed_consensus_metrics": {
+      "qwk": 0.8353457738748628,
+      "mae": 0.2916666666666667,
+      "exact_accuracy": 0.7083333333333334,
       "error_above_one_rate": 0.0
     },
-    "per_seed_qwk_mean": 0.8443959674010608,
-    "per_seed_qwk_sd": 0.006259522058621064,
-    "per_seed_mae_mean": 0.275,
-    "per_seed_mae_sd": 0.01178511301977579
+    "seed_consensus_note": "aggregating the ten fold assignments into a single per-book consensus raises QWK but is not the quantity the table reports; shown for transparency"
   },
   "paired_bootstrap_vs": {
     "ra_scope": {
-      "d_qwk": 0.024457854188121186,
+      "d_qwk": 0.021404206998570263,
       "d_qwk_ci95": [
-        -0.023820439261696972,
-        0.074162807696087
+        -0.026355307279575937,
+        0.0706102488106964
       ],
-      "d_mae": -0.14166666666666666,
+      "d_mae": -0.14,
       "d_mae_ci95": [
-        -0.24999999999999997,
-        -0.04166666666666663
+        -0.24749999999999994,
+        -0.03500000000000003
       ]
     },
     "uniform_pool": {
-      "d_qwk": 0.056791349623526166,
+      "d_qwk": 0.05373770243397524,
       "d_qwk_ci95": [
-        0.000779732527820787,
-        0.1131039949756788
+        -0.0014522611120870179,
+        0.11074362368372338
       ],
-      "d_mae": -0.1833333333333333,
+      "d_mae": -0.18166666666666664,
       "d_mae_ci95": [
-        -0.3,
-        -0.06666666666666671
+        -0.2975,
+        -0.06833333333333336
       ]
+    }
+  },
+  "delta_point_estimates_vs": {
+    "ra_scope": {
+      "qwk": 0.021404206998570263,
+      "mae": -0.14,
+      "exact_accuracy": 0.13250000000000006,
+      "error_above_one_rate": -0.0075
+    },
+    "uniform_pool": {
+      "qwk": 0.05373770243397524,
+      "mae": -0.18166666666666664,
+      "exact_accuracy": 0.1658333333333334,
+      "error_above_one_rate": -0.015833333333333335
     }
   }
 }
